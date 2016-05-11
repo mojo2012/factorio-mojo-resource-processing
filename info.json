@@ -1,0 +1,9 @@
+{
+  "name": "mojo-resource-processing",
+  "version": "0.1",
+  "title": "mojo-resource-processing",
+  "author": "mojo2012",
+  "homepage": "",
+  "dependencies": ["base >= 0.12.12", "bobores >= 0.12.7"],
+  "description": ""
+}

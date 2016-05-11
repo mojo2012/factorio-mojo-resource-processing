@@ -1,0 +1,1 @@
+require("prototypes.recipe.ore-processing.base")
