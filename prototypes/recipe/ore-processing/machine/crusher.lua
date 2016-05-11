@@ -5,7 +5,7 @@ data:extend({
       ingredients = {
         {"stone", 15},{"electronic-circuit",2},{"iron-gear-wheel",5}
       },
-      enabled = true,
+      enabled = false,
       result = "ore-crusher"
     },
     {
