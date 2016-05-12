@@ -12,3 +12,4 @@ require("prototypes.technology.base")
 -- some init stuff specific to the various sub parts of the mod
 require("logic.ore-processing.init")
 require("logic.no-hand-crafting.init")
+require("logic.cokery.init")
