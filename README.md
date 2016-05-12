@@ -4,6 +4,8 @@ Implements a more detailed (and harder) ore mining processes. It is loosely base
 Further mods I used as basis:
 * http://www.factoriomods.com/mods/no-hand-crafting-fentus
 * http://www.factoriomods.com/mods/burn-the-wood-advanced
+* http://www.factoriomods.com/mods/tree-house
+* https://github.com/Blu3wolf/Treefarm-Lite
 
 ## Dependecies
 * Factorio >= 0.12.33
@@ -15,6 +17,7 @@ Further mods I used as basis:
 * Removed hand-crafting, added burner assembling machine instead
 * Cokery to transform wood to coal
 * Water well pump to pump up water even in deserts
+* Tree farm that auto seeds and chops down trees
 
 # Plan
 * Custom ore mining processes for all ores provided by bob's ores mod

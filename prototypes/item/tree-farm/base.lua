@@ -1,0 +1,32 @@
+data:extend({
+  {
+    type= "item",
+    name= "treehouse",
+    icon = "__mojo-resource-processing__/graphics/icons/tree-farm/tree-farm.png",
+    flags= { "goes-to-quickbar" },
+    subgroup = "production-machine",
+    order = "h[th-3]",
+    place_result = "treehouseOverlay",
+    stack_size= 10,
+  },
+  {
+    type= "item",
+    name= "treehand-red",
+    icon = "__base__/graphics/icons/tree-09.png",
+    flags= { "goes-to-quickbar" },
+    subgroup = "production-machine",
+    order = "h[th-2]",
+    place_result = "treehand-red",
+    stack_size= 100,
+  },
+  {
+    type= "item",
+    name= "treehand",
+    icon = "__base__/graphics/icons/tree-02.png",
+    flags= { "goes-to-quickbar" },
+    subgroup = "production-machine",
+    order = "h[th-1]",
+    place_result = "treehand",
+    stack_size= 100,
+  },
+})

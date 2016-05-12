@@ -24,7 +24,7 @@ data:extend({
       {"iron-plate", 4},
       {"copper-cable", 10}
     },
-    result = "cokery"
+    result = "cokery-electric"
   },
   {
     type = "recipe",
