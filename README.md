@@ -6,6 +6,7 @@ Further mods I used as basis:
 * http://www.factoriomods.com/mods/burn-the-wood-advanced
 * http://www.factoriomods.com/mods/tree-house
 * https://github.com/Blu3wolf/Treefarm-Lite
+* http://www.factoriomods.com/mods/landfill
 
 ## Dependecies
 * Factorio >= 0.12.33
@@ -18,6 +19,7 @@ Further mods I used as basis:
 * Cokery to transform wood to coal
 * Water well pump to pump up water even in deserts
 * Tree farm that auto seeds and chops down trees
+* Terraform: build land on water tiles
 
 # Plan
 * Custom ore mining processes for all ores provided by bob's ores mod
