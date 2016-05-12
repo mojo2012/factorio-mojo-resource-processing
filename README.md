@@ -1,7 +1,8 @@
 # Factorio mod: mojo-resource-processing
 Implements a more detailed (and harder) ore mining processes. It is loosely based on the hardCrafting mod (http://www.factoriomods.com/mods/harder-ressource-processing). I also used some graphics from that mod. But in the future I might use my own assets.
 Further mods I used as basis:
-* http://www.factoriomods.com/mods/no-hand-crafting-fentus)
+* http://www.factoriomods.com/mods/no-hand-crafting-fentus
+* http://www.factoriomods.com/mods/burn-the-wood-advanced
 
 ## Dependecies
 * Factorio >= 0.12.33
@@ -21,6 +22,7 @@ Further mods I used as basis:
 
 
 # Current state
-* ore crusher and pulverizer to process raw ore
+* Ore crusher and pulverizer to process raw ore
 * Process by-products (gravel, dirt, slag)
 * Removed hand-crafting, added burner assembling machine instead
+* Charcoal kiln to transform wood to coal
