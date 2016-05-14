@@ -54,30 +54,39 @@ function initialise()
   }
 end
 
-script.on_init(function()
-  pcall(function()
-    initialise()
-  end)
+Event.register(core_events.init, function()
+   initialise()
 end)
 
-script.on_load(function()
-  pcall(function()
-  end)
+Event.register(core_events.load, function()
+  --
 end)
 
-script.on_configuration_changed(function(data)
-  pcall(function()
-  	if data.mod_changes ~= nil and data.mod_changes["mojo-resource-processing"] ~= nil then
-  		initialise()
-  	end
-  end)
+Event.register(core_events.configuration_changed, function(data)
+	if data.mod_changes ~= nil and data.mod_changes["mojo-resource-processing"] ~= nil then
+		initialise()
+	end
 end)
 
-script.on_event(defines.events.on_player_created, function(event)
+Event.register(defines.events.on_player_created, function(event)
     global.th.player_index = event.player_index
 end)
 
-script.on_event(defines.events.on_built_entity, function(event)
+Event.register(defines.events.on_built_entity, function(event)
+  if event.created_entity.name == "treehouseOverlay" then
+    local ent = game.get_surface("1").create_entity{name = "treehouse", position = event.created_entity.position, force = event.created_entity.force}
+    event.created_entity.destroy()
+    initTreehouse(event.tick, ent, event.player_index)
+  elseif event.created_entity.name == "treehand" or event.created_entity.name == "treehand-red" then
+    if not createTreeHand(event.created_entity, event.tick) then
+      game.players[event.player_index].insert{name = event.created_entity.name, count = 1}
+    end
+    
+    event.created_entity.destroy()
+  end
+end)
+
+Event.register(defines.events.on_robot_built_entity, function(event)
   if event.created_entity.name == "treehouseOverlay" then
     local ent = game.get_surface("1").create_entity{name = "treehouse", position = event.created_entity.position, force = event.created_entity.force}
     event.created_entity.destroy()
@@ -90,25 +99,8 @@ script.on_event(defines.events.on_built_entity, function(event)
   end
 end)
 
-script.on_event(defines.events.on_robot_built_entity, function(event)
-  if event.created_entity.name == "treehouseOverlay" then
-    local ent = game.get_surface("1").create_entity{name = "treehouse", position = event.created_entity.position, force = event.created_entity.force}
-    event.created_entity.destroy()
-    initTreehouse(event.tick, ent, event.player_index)
-  elseif event.created_entity.name == "treehand" or event.created_entity.name == "treehand-red" then
-    if not createTreeHand(event.created_entity, event.tick) then
-      game.players[event.player_index].insert{name = event.created_entity.name, count = 1}
-    end
-    event.created_entity.destroy()
-  end
-end)
-
-script.on_event(defines.events.on_tick, function(event)
+Event.register(defines.events.on_tick, function(event)
   
-
-  if global.th == nil then
-    initialise()
-  end
 
   if global.th.cur_gp_tick > 0 or global.th.cur_tree_tick > 0 then
     if global.th.cur_tree_tick > 0 and (event.tick > global.th.cur_tree_tick + global.th.grow_tree_per_time) then
@@ -122,7 +114,7 @@ script.on_event(defines.events.on_tick, function(event)
   end
 end)
 
-script.on_event(defines.events.on_gui_click, function(event)
+Event.register(defines.events.on_gui_click, function(event)
   local player = game.players[event.player_index]
   local playerdata = global.th.playerdata[event.player_index]
   if event.element.name == "th-ok" then

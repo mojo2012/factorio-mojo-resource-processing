@@ -10,121 +10,27 @@ local replaceableTiles =
   ["deepwater"] = "grass"
 }
 
-script.on_configuration_changed(function(data)
-  if global.bombs ~= nil then
-    for k,v in pairs(global.bombs) do
-      if v[1].valid and v[5] == nil then
-        v[5] = v[1].surface
-      end
-    end
+Event.register(defines.events, function(event)
+  if event.name == defines.events.on_built_entity then
+    local player = game.get_player(event.player_index)
     
-    if global.ticks == nil then
-      global.ticks = 0
+    if event.created_entity.name == "landfill2by2"
+      or event.created_entity.name == "landfill4by4" then
+        
+        if event.created_entity.name == "landfill2by2" then
+          landfill2by2(event.created_entity.position, player)
+        elseif event.created_entity.name == "landfill4by4" then
+          landfill4by4(event.created_entity.position, player)
+        end
+        
+        if event.created_entity.valid then
+          event.created_entity.destroy()
+        end
     end
   end
 end)
 
-script.on_load(function(event)
-  if global.bombs ~= nil then
-    bombs = global.bombs
-    script.on_event(defines.events.on_tick, tickBombs)
-    if global.ticks == nil then
-      global.ticks = 0
-    end
-  end
-end)
 
-function tickBombs()
-  if global.ticks > 0 then global.ticks = global.ticks - 1 else global.ticks = 10, executeTicks() end
-end
-
-function executeTicks()
-  local x,y
-  local distX,distY
-  local energy
-  
-  for k,v in pairs(bombs) do
-    if v[1].valid and v[2] == 0 then
-      energy = v[1].energy
-      
-      if energy > 49000000 then
-        x = v[1].position.x
-        y = v[1].position.y
-        
-        for xx = x - 5.5,x + 5.5,1.5 do
-          for yy = y - 5.5,y + 5.5,1.5 do
-            distX = math.abs(x - xx)
-            distY = math.abs(y - yy)
-            
-            if math.floor(math.sqrt((distX * distX) + (distY * distY))) <= 5 then
-              v[1].surface.create_entity({name = "medium-explosion", position = {x = xx, y = yy}})
-            end
-          end
-        end
-        
-        v[5].create_entity({name = "water-bomb-detonation", position = v[1].position, target = v[1], speed = 1})
-        v[4] = v[1].position
-        v[1].destroy()
-        v[2] = 1
-        v[3] = game.tick
-        createWater(x, y, 1, v[5])
-        throwDirt(x, y, 1, v[5])
-      else
-        if energy > 40000000 then
-          v[5].create_entity({name = "smoke", position = v[1].position})
-          v[5].create_entity({name = "smoke", position = {x = v[1].position.x, y = v[1].position.y - 0.2}})
-        elseif energy > 30000000 then
-          v[5].create_entity({name = "smoke", position = v[1].position})
-        end
-      end
-    else
-      if v[2] == 1 then
-        if game.tick - v[3] > 90 then
-          createRandomStone(v[4], v[5])
-          createRandomStone(v[4], v[5])
-          createRandomStone(v[4], v[5])
-          v[2] = 0
-        elseif game.tick - v[3] > 80 then
-          createRandomStone(v[4], v[5])
-          createRandomStone(v[4], v[5])
-          createRandomStone(v[4], v[5])
-        elseif game.tick - v[3] > 70 then
-          createRandomStone(v[4], v[5])
-        elseif game.tick - v[3] > 60 then
-          createRandomStone(v[4], v[5])
-          createRandomStone(v[4], v[5])
-        end
-      else
-        table.remove(bombs, k)
-        if #global.bombs == 0 then
-          bombs = nil
-          global.bombs = nil
-          script.on_event(defines.events.on_tick, nil)
-        end
-      end
-    end
-  end
-end
-
-function createWater(x, y, size, surface)
-  local players = surface.find_entities_filtered({area = {{x - size - 1, y - size - 1}, {x + size + 1, y + size + 1}}, type="player"})
-  -- Setting tiles to water where players are standing deletes the player and sets them to god mode.
-  if #players ~= 0 then
-    return
-  end
-  
-  local waterTiles = {}
-  x = math.floor(x)
-  y = math.floor(y)
-  
-  for wx = x - size, x + size, 1 do
-    for wy = y - size, y + size, 1 do
-      table.insert(waterTiles, {name="water", position={wx, wy}})
-    end
-  end
-  
-  surface.set_tiles(waterTiles)
-end
 
 function throwDirt(x, y, size, surface)
   local dirtTiles = {}
@@ -187,47 +93,6 @@ function createRandomStone(position, surface)
   end
 end
 
-script.on_event(defines.events.on_built_entity, function(event)
-  local newBomb
-  local bombEntity
-  local player = game.get_player(event.player_index)
-  
-  if event.created_entity.name == "landfill2by2"
-    or event.created_entity.name == "landfill4by4"
-    or event.created_entity.name == "water-be-gone" then
-      if event.created_entity.name == "landfill2by2" then
-        landfill2by2(event.created_entity.position, player)
-      elseif event.created_entity.name == "landfill4by4" then
-        landfill4by4(event.created_entity.position, player)
-      elseif event.created_entity.name == "water-be-gone" then
-        waterBeGone(event.created_entity.position, player)
-      end
-      if event.created_entity.valid then
-        event.created_entity.destroy()
-      end
-  elseif event.created_entity.name == "water-bomb-area" then
-    bombEntity = player.surface.create_entity({name = "water-bomb", position = event.created_entity.position, force = game.forces.player})
-    event.created_entity.destroy()
-    
-    if global.bombs == nil then
-      global.bombs = {}
-      bombs = global.bombs
-      script.on_event(defines.events.on_tick, tickBombs)
-      if global.ticks == nil then
-        global.ticks = 0
-      end
-    end
-    
-    newBomb = {}
-    newBomb[1] = bombEntity        -- Bomb entity
-    newBomb[2] = 0            -- Bomb state (charging:0, detonated:1)
-    newBomb[3] = 0            -- Tick detonation occurred
-    newBomb[5] = bombEntity.surface
-    
-    table.insert(bombs, newBomb)
-  end
-end)
-
 function landfill(position, size, surface)
   local tileName
   local tiles = {}
@@ -280,65 +145,6 @@ function landfill4by4(position, player)
   player.surface.create_entity({name = "landfill-fade-2", position = position, force = player.force})
 end
 
-function waterBeGone(position, player)
-  -- Flood fills a body of water using landfills from the player's inventory
-  local floor = math.floor
-  local xpos = floor(position.x)
-  local ypos = floor(position.y)
-  local tiles = {}
-  local stiles = {}
-  local ntiles = {}
-  local positions = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}}
-  local tile, tileName
-  local x,y
-  local floorX
-  local chunksEffected = {}
-  local result
-  local surface = player.surface
-  
-  tileName = surface.get_tile(xpos, ypos).name
-  if tileName == "deepwater" or tileName == "water" then
-    table.insert(tiles, {name = "grass", position = {xpos, ypos}})
-    table.insert(stiles, {xpos, ypos})
-  end
-  
-  for t in pairs(stiles) do
-    for k,p in pairs(positions) do
-      x = stiles[t][1] + p[1]
-      y = stiles[t][2] + p[2]
-      if ntiles[x] == nil or ntiles[x][y] == nil then
-        result, tileName = pcall(function() return surface.get_tile(x, y).name end)
-        if result and replaceableTiles[tileName] then
-          table.insert(tiles, {name = replaceableTiles[tileName], position = {x, y}})
-          table.insert(stiles, {x, y})
-          
-          floorX = floor(x / 32)
-          if chunksEffected[floorX] == nil then
-            chunksEffected[floorX] =  {}
-          end
-          
-          chunksEffected[floorX][floor(y / 32)] = 1
-        end
-        
-        if ntiles[x] == nil then
-          ntiles[x] = {}
-        end
-        ntiles[x][y] = true
-      end
-    end
-  end
-  
-  if #tiles ~= 0 then
-    if useLandfills(#tiles, player) then
-      setTilesAndUpdateChunks(tiles, chunksEffected, player)
-    else
-      player.insert{name="water-be-gone", count=1}
-    end
-  else
-    player.insert{name="water-be-gone", count=1}
-  end
-end
-
 function setTilesAndUpdateChunks(tiles, chunks, player)
   player.surface.set_tiles(tiles)
   
@@ -384,10 +190,8 @@ end
 
 remote.add_interface("landfill", {
   landfill,
-  createWater,
   throwDirt,
   createRandomStone,
   useLandfills,
-  waterBeGone,
   modifyReplaceableTile
 })

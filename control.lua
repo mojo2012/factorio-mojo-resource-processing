@@ -1,3 +1,6 @@
+require "stdlib.event.event"
+require "defines"
+
 -- initialization and event handling during the game
 
 require("logic.helper")
