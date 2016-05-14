@@ -26,5 +26,4 @@ data:extend({
     order = "f[slag]",
     stack_size= 50,
   },
-
 })

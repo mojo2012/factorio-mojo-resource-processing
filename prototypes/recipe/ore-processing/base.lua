@@ -1,8 +1,23 @@
 require("prototypes.recipe.ore-processing.machine.crusher")
 require("prototypes.recipe.ore-processing.machine.pulverizer")
 
+-- original ores
 require("prototypes.recipe.ore-processing.ore-iron")
 require("prototypes.recipe.ore-processing.ore-copper")
+
+-- bobores - extended
+require("prototypes.recipe.ore-processing.ore-gold")
+require("prototypes.recipe.ore-processing.ore-bauxite")
+require("prototypes.recipe.ore-processing.ore-lead")
+require("prototypes.recipe.ore-processing.ore-silver")
+require("prototypes.recipe.ore-processing.ore-tin")
+require("prototypes.recipe.ore-processing.ore-tungsten")
+require("prototypes.recipe.ore-processing.ore-zinc")
+
+-- gems
+--require("prototypes.recipe.ore-processing.ore-rutile")
+--require("prototypes.recipe.ore-processing.ore-quartz")
+--require("prototypes.recipe.ore-processing.ore-gemstone")
 
 data:extend({
     { -- concrete

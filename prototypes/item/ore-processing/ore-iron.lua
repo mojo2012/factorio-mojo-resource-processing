@@ -43,6 +43,7 @@ data:extend({
 
 data.raw.item["iron-ore"].subgroup = "iron"
 
+
 -- Minable ressources
 data.raw["resource"]["iron-ore"].minable.result = nil
 data.raw["resource"]["iron-ore"].minable.results = {

@@ -11,7 +11,7 @@ data:extend({
         },
         {
           type = "unlock-recipe",
-          recipe = "ore-crusher"
+          recipe = "ore-iron-crushed"
         }
       },
       unit = {
