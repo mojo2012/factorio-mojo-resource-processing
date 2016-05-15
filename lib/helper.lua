@@ -26,7 +26,7 @@ function addItem(itemName, subgroup, order, stackSize)
 end
 
 
-function addRecipe(name,category,subgroup,timeRequired,ingredients,results,order)
+function addRecipe(name, category, subgroup, timeRequired, ingredients, results, order)
 	local resultsDetailled = {}
 	if not results then
 		print("No results found for recipe with name: "..name)
@@ -40,17 +40,17 @@ function addRecipe(name,category,subgroup,timeRequired,ingredients,results,order
 	end
 	imageName = removeAfterSign(name,"|")
 	data:extend({
-	{
-		type = "recipe",
-    name = name,
-    category = category,
-		subgroup = subgroup,
-    energy_required = timeRequired,
-    ingredients = ingredients,
-		icon = "__hardCrafting__/graphics/icons/"..imageName..".png",
-    results = resultsDetailled,
-		order = order
-	}
+		{
+			type = "recipe",
+	    	name = name,
+	    	category = category,
+			subgroup = subgroup,
+	    	energy_required = timeRequired,
+	    	ingredients = ingredients,
+			icon = "__hardCrafting__/graphics/icons/"..imageName..".png",
+	    	results = resultsDetailled,
+			order = order
+		}
 	})
 end
 
