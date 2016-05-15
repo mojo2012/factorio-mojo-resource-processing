@@ -1,9 +1,14 @@
--- needed during factorio startup to initialize the plugin
+require "defines"
+require "stdlib.log.logger"
 
--- some helper functions necessary to deal some internal initialization
-require("logic.helper")
+--config
+require "config.config"
+
+--some helper function
+require("lib.helper")
 
 -- the actual modded game items
+require("prototypes.tile.base")
 require("prototypes.item.base")
 require("prototypes.entity.base")
 require("prototypes.recipe.base")

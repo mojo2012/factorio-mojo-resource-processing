@@ -1,9 +1,12 @@
-require "stdlib.event.event"
 require "defines"
+require "stdlib.log.logger"
+require "stdlib.event.event"
 
--- initialization and event handling during the game
+--config
+require "config.config"
 
-require("logic.helper")
+--some helper function
+require("lib.helper")
 
 -- specific event handling for the various sub parts of the mod
 require("logic.ore-processing.control")
