@@ -49,7 +49,7 @@ data.raw["resource"]["iron-ore"].minable.result = nil
 data.raw["resource"]["iron-ore"].minable.results = {
   ressourceItemMinMaxProb("iron-ore",   1, 1, 0.9), -- 1 item at percentage 0.9 --
   ressourceItemMinMaxProb("ore-iron-nugget",1, 1, 0.1),
-  ressourceItemMinMaxProb("gravel",     1, 1, 0.45),
-  ressourceItemMinMaxProb("dirt",       1, 1, 0.4)
+  ressourceItemMinMaxProb("gravel",     1, 1, 0.2),
+  ressourceItemMinMaxProb("dirt",       1, 1, 0.2)
 }
 

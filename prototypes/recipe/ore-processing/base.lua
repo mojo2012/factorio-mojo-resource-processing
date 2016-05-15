@@ -6,9 +6,10 @@ require("prototypes.recipe.ore-processing.ore-iron")
 require("prototypes.recipe.ore-processing.ore-copper")
 
 -- bobores - extended
-require("prototypes.recipe.ore-processing.ore-gold")
 require("prototypes.recipe.ore-processing.ore-bauxite")
+require("prototypes.recipe.ore-processing.ore-gold")
 require("prototypes.recipe.ore-processing.ore-lead")
+require("prototypes.recipe.ore-processing.ore-nickel")
 require("prototypes.recipe.ore-processing.ore-silver")
 require("prototypes.recipe.ore-processing.ore-tin")
 require("prototypes.recipe.ore-processing.ore-tungsten")
@@ -27,24 +28,25 @@ data:extend({
 	  enabled = false,
 	  category = "crafting-with-fluid",
 	  ingredients = {
-		  {"slag", 8},
+		  {"slag", 5},
 		  {type="fluid", name="water", amount=10}
 		},
-	  result= "concrete",
-	  result_count = 10
+	  results = {
+	  	{"concrete", 1},
+	  }
     },
 
     { -- stone bricks
       type = "recipe",
       name = "stone-brick-gravel",
 	  energy_required = 3.5,
-	  enabled = false,
+	  enabled = true,
 	  category = "smelting",
 	  ingredients = {
-		  {"gravel", 10},
-		  {type="fluid", name="water", amount=2}
+		  {"gravel", 4}
 		},
-	  result = "stone-brick",
-	  result_count = 5
+	  results = { 
+	  	{"stone-brick", 1},
+	  }
     },
   })

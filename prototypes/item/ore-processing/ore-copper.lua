@@ -38,6 +38,6 @@ data.raw.item["copper-ore"].subgroup = "copper"
 data.raw["resource"]["copper-ore"].minable.result = nil
 data.raw["resource"]["copper-ore"].minable.results = {
   ressourceItemMinMaxProb("copper-ore",   1, 1, 0.9), -- 1 item at percentage 0.9 --
-  ressourceItemMinMaxProb("gravel",     1, 1, 0.45),
-  ressourceItemMinMaxProb("dirt",       1, 1, 0.4)
+  ressourceItemMinMaxProb("gravel",     1, 1, 0.35),
+  ressourceItemMinMaxProb("dirt",       1, 1, 0.2)
 }

@@ -70,7 +70,7 @@ data:extend({
     },
     {
       type = "recipe",
-      name = "bauxite-plate-pulverized-ore",
+      name = "aluminium-plate-pulverized-ore",
       category = "smelting",
       subgroup = "bauxite",
       energy_required = 8,

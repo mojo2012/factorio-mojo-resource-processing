@@ -27,3 +27,11 @@ data:extend({
     stack_size= 50,
   },
 })
+
+
+-- Place as tile
+data.raw["item"]["dirt"].place_as_tile = {
+    result = "dirt-marker",
+    condition_size = 3,
+    condition = { "water-tile" }
+}

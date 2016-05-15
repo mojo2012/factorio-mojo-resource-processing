@@ -42,7 +42,7 @@ data:extend({
       category = "smelting",
       subgroup = "nickel",
       energy_required = 10,
-      icon = "__base__/graphics/icons/nickel-plate.png",
+      icon = "__mojo-resource-processing__/graphics/icons/ore-nickel/nickel-plate.png",
       ingredients = {
         {"nickel-ore", 10}
       },
@@ -58,7 +58,7 @@ data:extend({
       category = "smelting",
       subgroup = "nickel",
       energy_required = 8,
-      icon = "__base__/graphics/icons/nickel-plate.png",
+      icon = "__mojo-resource-processing__/graphics/icons/ore-nickel/nickel-plate.png",
       ingredients = {
         {"ore-nickel-crushed", 10}
       },
@@ -74,7 +74,7 @@ data:extend({
       category = "smelting",
       subgroup = "nickel",
       energy_required = 8,
-      icon = "__base__/graphics/icons/nickel-plate.png",
+      icon = "__mojo-resource-processing__/graphics/icons/ore-nickel/nickel-plate.png",
       ingredients = {
         {"ore-nickel-pulverized", 10}
       },
