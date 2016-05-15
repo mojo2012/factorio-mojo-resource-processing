@@ -54,15 +54,15 @@ function initialise()
   }
 end
 
-Event.register(core_events.init, function()
+Event.register(Event.core_events.init, function()
    initialise()
 end)
 
-Event.register(core_events.load, function()
+Event.register(Event.core_events.load, function()
   --
 end)
 
-Event.register(core_events.configuration_changed, function(data)
+Event.register(Event.core_events.configuration_changed, function(data)
 	if data.mod_changes ~= nil and data.mod_changes["mojo-resource-processing"] ~= nil then
 		initialise()
 	end
