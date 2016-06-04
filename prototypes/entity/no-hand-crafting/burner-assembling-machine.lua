@@ -25,9 +25,9 @@ data:extend({
     crafting_speed = 0.25,
     energy_source = {
       type = "burner",
-      effectivity = 1,
+      effectivity = 0.5,
       fuel_inventory_size = 1,
-      emissions = 0.1,
+      emissions = 0.5,
       smoke =
       {
         {
@@ -39,7 +39,7 @@ data:extend({
         }
       }
     },
-    energy_usage = "140kW",
+    energy_usage = "490kW",
     ingredient_count = 6,
     open_sound = { filename = "__base__/sound/machine-open.ogg", volume = 0.85 },
     close_sound = { filename = "__base__/sound/machine-close.ogg", volume = 0.75 },
