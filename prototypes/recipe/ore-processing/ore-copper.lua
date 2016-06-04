@@ -1,4 +1,4 @@
--- reset original iron plate recipe
+dw-- reset original iron plate recipe
 data.raw["recipe"]["copper-plate"] = nil
 
 data:extend({
@@ -10,12 +10,12 @@ data:extend({
       energy_required = 3,
       icon = "__mojo-resource-processing__/graphics/icons/ore-copper/crushed-ore-copper.png",
       ingredients = {
-        {"copper-ore", 10}
+        {"copper-ore", 3}
       },
       enabled = false,
       results = {
-      	{"ore-copper-crushed", 7},
-      	{"stone", 3}
+      	{"ore-copper-crushed", 2},
+      	{"stone", 2}
       }
     },
     {
@@ -26,12 +26,12 @@ data:extend({
       energy_required = 3,
       icon = "__mojo-resource-processing__/graphics/icons/ore-copper/pulverized-ore-copper.png",
       ingredients = {
-        {"ore-copper-crushed", 10}
+        {"ore-copper-crushed", 3}
       },
       enabled = false,
       results = {
-      	{"ore-copper-pulverized", 8},
-      	{"gravel", 2}
+      	{"ore-copper-pulverized", 5},
+      	{"gravel", 1}
       }
     },
     { -- copper plates
@@ -42,12 +42,12 @@ data:extend({
       energy_required = 10,
       icon = "__base__/graphics/icons/copper-plate.png",
       ingredients = {
-        {"copper-ore", 10}
+        {"copper-ore", 3}
       },
       enabled = true,
       results = {
-      	{"copper-plate", 3},
-      	{"slag", 3}
+      	{"copper-plate", 1},
+      	{"slag", 1}
       }
     },
     {
@@ -58,12 +58,12 @@ data:extend({
       energy_required = 8,
       icon = "__base__/graphics/icons/copper-plate.png",
       ingredients = {
-        {"ore-copper-crushed", 10}
+        {"ore-copper-crushed", 3}
       },
       enabled = false,
       results = {
-        {"copper-plate", 6},
-        {"slag", 2},
+        {"copper-plate", 3},
+        {"slag", 1},
       }
     },
     {
@@ -74,11 +74,11 @@ data:extend({
       energy_required = 8,
       icon = "__base__/graphics/icons/copper-plate.png",
       ingredients = {
-        {"ore-copper-pulverized", 10}
+        {"ore-copper-pulverized", 1}
       },
       enabled = false,
       results = {
-      	{"copper-plate", 8}
+      	{"copper-plate", 1}
       }
     },
   })

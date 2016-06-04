@@ -31,7 +31,7 @@ data:extend({
       },
       enabled = false,
       results = {
-      	{"ore-iron-pulverized", 3},
+      	{"ore-iron-pulverized", 6},
       	{"gravel", 1}
       }
     },
