@@ -6,7 +6,7 @@ data:extend(
 			enabled = "true",
 			ingredients =
 			{
-				{"stone", 20}
+				{"stone", 10}
 			},
 			result = "landfill2by2"
 		},
@@ -16,17 +16,17 @@ data:extend(
 			enabled = "true",
 			ingredients =
 			{
-				{"landfill2by2", 4}
+				{"stone", 20}
 			},
 			result = "landfill4by4"
 		},
 		{
 			type = "recipe",
-			name = "landfill2by2-stone",
+			name = "landfill2by2-gravel",
 			enabled = "true",
 			ingredients =
 			{
-				{"gravel", 20}
+				{"gravel", 10}
 			},
 			result = "landfill2by2"
 		},
@@ -36,7 +36,7 @@ data:extend(
 			enabled = "true",
 			ingredients =
 			{
-				{"landfill2by2", 4}
+				{"gravel", 20}
 			},
 			result = "landfill4by4"
 		},
@@ -46,17 +46,17 @@ data:extend(
 			enabled = "true",
 			ingredients =
 			{
-				{"dirt", 20}
+				{"dirt", 10}
 			},
 			result = "landfill2by2"
 		},
 		{
 			type = "recipe",
-			name = "landfill4by4-stone",
+			name = "landfill4by4-dirt",
 			enabled = "true",
 			ingredients =
 			{
-				{"landfill2by2", 4}
+				{"dirt", 20}
 			},
 			result = "landfill4by4"
 		},
