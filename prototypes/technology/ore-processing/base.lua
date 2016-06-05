@@ -193,7 +193,11 @@ data:extend({
         {
           type = "unlock-recipe",
           recipe = "zinc-plate-pulverized-ore"
-        }
+        },
+        {
+          type = "unlock-recipe",
+          recipe = "quartz-sand"
+        },
       },
       unit = {
         count = 50,
@@ -209,4 +213,8 @@ data:extend({
 
 
 -- insert concrete-slag recipe into advanced-material-processing-2 technology
+addTechnologyUnlocksRecipe("advanced-material-processing", "treehouse")
+
 addTechnologyUnlocksRecipe("advanced-material-processing-2", "concrete-slag")
+addTechnologyUnlocksRecipe("advanced-material-processing", "glass-plate")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "cut-glass")
