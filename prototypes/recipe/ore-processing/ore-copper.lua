@@ -1,4 +1,4 @@
-dw-- reset original iron plate recipe
+-- reset original iron plate recipe
 data.raw["recipe"]["copper-plate"] = nil
 
 data:extend({
