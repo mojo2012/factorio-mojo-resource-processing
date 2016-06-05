@@ -462,7 +462,14 @@ data:extend(
         }
       }
     },
-    circuit_wire_max_distance = 7.5
+    circuit_wire_max_distance = 7.5,
+    energy_source =
+      {
+        type = "electric",
+        usage_priority = "secondary-input",
+        emissions = 0.04 / 2.5
+      },
+    energy_usage = "30kW",
   },
   {
     type = "container",

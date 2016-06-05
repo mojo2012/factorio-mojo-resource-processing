@@ -4,9 +4,9 @@ data:extend({
     name = "treehouse",
     ingredients = 
     {
-      {"wood", 20},
-      {"iron-axe", 2},
-      {"iron-chest", 2},
+      {"iron-plate", 40},
+      {"steel-plate", 10},
+      {"electronic-circuit", 5},
     },
     energy_required = 3,
     result = "treehouse"
