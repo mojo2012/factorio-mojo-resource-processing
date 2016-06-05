@@ -26,7 +26,8 @@ data:extend(
 	{
 		type = "recipe",
 		name = "water-well-flow",
-		enabled = false,
+		enabled = true,
+		hidden = true,
 		energy_required = 1, 
 		category = "water-well-production",
 		ingredients =
