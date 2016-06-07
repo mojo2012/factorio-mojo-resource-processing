@@ -1,220 +1,63 @@
-data:extend({
-    {
-      type = "technology",
-      name = "ore-crusher",
-      icon = "__mojo-resource-processing__/graphics/icons/ore-processing/crusher.png",
-      prerequisites = {},
-      effects = {
-        {
-          type = "unlock-recipe",
-          recipe = "ore-crusher"
-        },
-        --iron
-        {
-          type = "unlock-recipe",
-          recipe = "ore-iron-crushed"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "iron-plate-crushed-ore"
-        },
-        --copper
-        {
-          type = "unlock-recipe",
-          recipe = "ore-copper-crushed"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "copper-plate-crushed-ore"
-        },
-        --bauxite
-        {
-          type = "unlock-recipe",
-          recipe = "ore-bauxite-crushed"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "aluminium-plate-crushed-ore"
-        },
-        --gold
-        {
-          type = "unlock-recipe",
-          recipe = "ore-gold-crushed"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "gold-plate-crushed-ore"
-        },
-        --lead
-        {
-          type = "unlock-recipe",
-          recipe = "ore-lead-crushed"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "lead-plate-crushed-ore"
-        },
-        --nickel
-        {
-          type = "unlock-recipe",
-          recipe = "ore-nickel-crushed"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "nickel-plate-crushed-ore"
-        },
-        --tin
-        {
-          type = "unlock-recipe",
-          recipe = "ore-tin-crushed"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "tin-plate-crushed-ore"
-        },
-        --tungsten
-        {
-          type = "unlock-recipe",
-          recipe = "ore-tungsten-crushed"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "tungsten-plate-crushed-ore"
-        },
-        --zinc
-        {
-          type = "unlock-recipe",
-          recipe = "ore-zinc-crushed"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "zinc-plate-crushed-ore"
-        }
-      },
-      unit = {
-        count = 42,
-        ingredients = {
-          {"science-pack-1", 1}
-        },
-        time = 20
-      },
-      order = "_crusher"
-    }
-  })
+   
+-- advanced ore processing/crushing
+addTechnologyUnlocksRecipe("advanced-material-processing", "ore-crusher")
+addTechnologyUnlocksRecipe("advanced-material-processing", "ore-iron-crushed")
+addTechnologyUnlocksRecipe("advanced-material-processing", "iron-plate-crushed-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing", "ore-copper-crushed")
+addTechnologyUnlocksRecipe("advanced-material-processing", "copper-plate-crushed-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing", "ore-bauxite-crushed")
+addTechnologyUnlocksRecipe("advanced-material-processing", "aluminium-plate-crushed-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing", "ore-gold-crushed")
+addTechnologyUnlocksRecipe("advanced-material-processing", "gold-plate-crushed-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing", "ore-lead-crushed")
+addTechnologyUnlocksRecipe("advanced-material-processing", "lead-plate-crushed-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing", "ore-nickel-crushed")
+addTechnologyUnlocksRecipe("advanced-material-processing", "nickel-plate-crushed-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing", "ore-tin-crushed")
+addTechnologyUnlocksRecipe("advanced-material-processing", "tin-plate-crushed-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing", "ore-tungsten-crushed")
+addTechnologyUnlocksRecipe("advanced-material-processing", "tungsten-plate-crushed-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing", "ore-zinc-crushed")
+addTechnologyUnlocksRecipe("advanced-material-processing", "zinc-plate-crushed-ore")
 
-data:extend({
-    {
-      type = "technology",
-      name = "ore-pulverizer",
-      icon = "__mojo-resource-processing__/graphics/icons/ore-processing/pulverizer.png",
-      prerequisites = {"ore-crusher", "steel-processing", "advanced-material-processing", },
-      effects = {
-        {
-          type = "unlock-recipe",
-          recipe = "ore-pulverizer"
-        },
-        --iron
-        {
-          type = "unlock-recipe",
-          recipe = "ore-iron-pulverized"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "iron-plate-pulverized-ore"
-        },
-        --copper
-        {
-          type = "unlock-recipe",
-          recipe = "ore-copper-pulverized"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "copper-plate-pulverized-ore"
-        },
-        --bauxite
-        {
-          type = "unlock-recipe",
-          recipe = "ore-bauxite-pulverized"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "aluminium-plate-pulverized-ore"
-        },
-        --gold
-        {
-          type = "unlock-recipe",
-          recipe = "ore-gold-pulverized"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "gold-plate-pulverized-ore"
-        },
-        --lead
-        {
-          type = "unlock-recipe",
-          recipe = "ore-lead-pulverized"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "lead-plate-pulverized-ore"
-        },
-        --nickel
-        {
-          type = "unlock-recipe",
-          recipe = "ore-nickel-pulverized"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "nickel-plate-pulverized-ore"
-        },
-        --tin
-        {
-          type = "unlock-recipe",
-          recipe = "ore-tin-pulverized"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "tin-plate-pulverized-ore"
-        },
-        --tungsten
-        {
-          type = "unlock-recipe",
-          recipe = "ore-tungsten-pulverized"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "tungsten-plate-pulverized-ore"
-        },
-        --zinc
-        {
-          type = "unlock-recipe",
-          recipe = "ore-zinc-pulverized"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "zinc-plate-pulverized-ore"
-        },
-        {
-          type = "unlock-recipe",
-          recipe = "quartz-sand"
-        },
-      },
-      unit = {
-        count = 50,
-        ingredients = {
-          {"science-pack-1", 2},
-          {"science-pack-2", 1}
-        },
-        time = 30
-      },
-      order = "_crusher-2"
-    }
-  })
+-- advanced ore processing/pulverizing
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "ore-pulverizer")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "ore-iron-pulverized")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "iron-plate-pulverized-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "ore-copper-pulverized")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "copper-plate-pulverized-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "ore-bauxite-pulverized")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "aluminium-plate-pulverized-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "ore-gold-pulverized")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "gold-plate-pulverized-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "ore-lead-pulverized")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "lead-plate-pulverized-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "ore-nickel-pulverized")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "nickel-plate-pulverized-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "ore-tin-pulverized")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "tin-plate-pulverized-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "ore-tungsten-pulverized")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "tungsten-plate-pulverized-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "ore-zinc-pulverized")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "zinc-plate-pulverized-ore")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "quartz-sand")
 
+-- tungsten
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "tungsten-wire")
 
--- insert concrete-slag recipe into advanced-material-processing-2 technology
+-- additional farms and production plants
 addTechnologyUnlocksRecipe("advanced-material-processing", "treehouse")
+addTechnologyUnlocksRecipe("fluid-handling", "water-well-pump")
 
+-- ore waste products
 addTechnologyUnlocksRecipe("advanced-material-processing-2", "concrete-slag")
+
+-- quartz glass products
 addTechnologyUnlocksRecipe("advanced-material-processing", "glass-plate")
-addTechnologyUnlocksRecipe("advanced-material-processing-2", "cut-glass")
+addTechnologyUnlocksRecipe("optics", "cut-glass")
+
+-- cokery
+addTechnologyUnlocksRecipe("advanced-material-processing", "coal")
+addTechnologyUnlocksRecipe("advanced-material-processing", "cokery")
+addTechnologyUnlocksRecipe("advanced-material-processing-2", "cokery-electric")
+

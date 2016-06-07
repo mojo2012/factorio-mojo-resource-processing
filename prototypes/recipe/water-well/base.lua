@@ -1,12 +1,8 @@
-data:extend(
-{
-	---------------------------------------------------------------------------------
+data:extend({
 	{
 		type = "recipe-category",
 		name = "water-well-production"
 	},
-	
-	---------------------------------------------------------------------------------
 	{
 		type = "recipe",
 		name = "water-well-pump",
@@ -21,8 +17,6 @@ data:extend(
 		},
 		result = "water-well-pump"
 	},
-	
-	---------------------------------------------------------------------------------
 	{
 		type = "recipe",
 		name = "water-well-flow",
@@ -38,9 +32,6 @@ data:extend(
 			{type="fluid", name="water", amount=100},
 		},
 	},
-	
-}
-)
+})
 
-table.insert( data.raw["technology"]["steel-processing"].effects, { type = "unlock-recipe", recipe = "water-well-pump"	} )
 

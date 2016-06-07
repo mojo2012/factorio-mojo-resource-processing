@@ -72,17 +72,26 @@ data:extend(
     order = "c-a-i[tungsten-plate]",
     stack_size = 200
   },
-  --[[{
+   {
+    type = "item",
+    name = "tungsten-wire",
+    icon = "__mojo-resource-processing__/graphics/icons/ore-tungsten/tungsten-wire.png",
+    flags = {"goes-to-main-inventory"},
+    subgroup = "raw-material",
+    order = "c-a-i[tungsten-wire]",
+    stack_size = 200
+  },
+  -- rutil plate = titanium
    {
     type = "item",
     name = "titanium-plate",
-    icon = "__mojo-resource-processing__/graphics/icons/metal-plates/titanium-plate.png",
+    icon = "__mojo-resource-processing__/graphics/icons/ore-rutile/titanium-plate.png",
     flags = {"goes-to-main-inventory"},
     subgroup = "raw-material",
     order = "c-a-h[titanium-plate]",
     stack_size = 200
   },
-    type = "item",
+--[[    type = "item",
     name = "silicon",
     icon = "__mojo-resource-processing__/graphics/icons/metal-plates/silicon-plate.png",
     flags = {"goes-to-main-inventory"},

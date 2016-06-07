@@ -16,6 +16,9 @@ require("prototypes.recipe.ore-processing.ore-tin")
 require("prototypes.recipe.ore-processing.ore-tungsten")
 require("prototypes.recipe.ore-processing.ore-zinc")
 
+require("prototypes.recipe.ore-processing.metal-products")
+
+
 -- gems
 --require("prototypes.recipe.ore-processing.ore-rutile")
 --require("prototypes.recipe.ore-processing.ore-quartz")

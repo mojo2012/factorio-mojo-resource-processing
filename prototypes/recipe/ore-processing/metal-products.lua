@@ -1,5 +1,22 @@
 data:extend(
 {
+  { -- tungsten
+      type = "recipe",
+      name = "tungsten-wire",
+      category = "ore-crusher",
+      subgroup = "tungsten",
+      energy_required = 3,
+      icon = "__mojo-resource-processing__/graphics/icons/ore-tungsten/tungsten-wire.png",
+      ingredients = {
+        {"tungsten-plate", 1}
+      },
+      enabled = false,
+      results = {
+        {"tungsten-wire", 1}
+      }
+    },
+
+  
    --[[{
     type = "recipe",
     name = "cobalt-plate",

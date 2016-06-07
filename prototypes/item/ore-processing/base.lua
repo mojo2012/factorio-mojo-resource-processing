@@ -20,8 +20,8 @@ require("prototypes.item.ore-processing.ore-zinc")
 require("prototypes.item.ore-processing.ore-gemstone")
 require("prototypes.item.ore-processing.ore-quartz")
 
--- new metal plates, based on bobores mod
-require("prototypes.item.ore-processing.plates")
+-- new metal plates and other products, based on bobores mod
+require("prototypes.item.ore-processing.metal-products")
 
 require("prototypes.item.ore-processing.machine.furnace")
 require("prototypes.item.ore-processing.machine.crusher")

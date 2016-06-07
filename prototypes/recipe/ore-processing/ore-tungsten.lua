@@ -44,12 +44,12 @@ data:extend({
       energy_required = 10,
       icon = "__mojo-resource-processing__/graphics/icons/ore-tungsten/tungsten-plate.png",
       ingredients = {
-        {"tungsten-ore", 10}
+        {"tungsten-ore", 5}
       },
       enabled = true,
       results = {
       	{"tungsten-plate", 3},
-        {"slag", 4},
+        {"slag", 2},
       }
     },
     {
@@ -60,12 +60,12 @@ data:extend({
       energy_required = 8,
       icon = "__mojo-resource-processing__/graphics/icons/ore-tungsten/tungsten-plate.png",
       ingredients = {
-        {"ore-tungsten-crushed", 10}
+        {"ore-tungsten-crushed", 5}
       },
       enabled = false,
       results = {
-      	{"tungsten-plate", 6},
-      	{"slag", 2}
+      	{"tungsten-plate", 4},
+      	{"slag", 1}
       }
     },
     {
@@ -76,11 +76,11 @@ data:extend({
       energy_required = 8,
       icon = "__mojo-resource-processing__/graphics/icons/ore-tungsten/tungsten-plate.png",
       ingredients = {
-        {"ore-tungsten-pulverized", 10}
+        {"ore-tungsten-pulverized", 5}
       },
       enabled = false,
       results = {
-      	{"tungsten-plate", 8}
+      	{"tungsten-plate", 4}
       }
     },
   })

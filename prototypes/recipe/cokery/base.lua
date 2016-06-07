@@ -6,7 +6,7 @@ data:extend({
   {
     type = "recipe",
     name = "cokery",
-    enabled = "true",
+    enabled = "false",
     ingredients = {
       {"stone-furnace",1},
       {"iron-gear-wheel", 6},
@@ -17,7 +17,7 @@ data:extend({
   {
     type = "recipe",
     name = "cokery-electric",
-    enabled = "true",
+    enabled = "false",
     ingredients = {
       {"stone", 20},
       {"iron-gear-wheel", 6},
@@ -29,6 +29,7 @@ data:extend({
   {
     type = "recipe",
     name = "coal",
+    enabled = "false",
     energy_required = 2,
     category = "cokery",
     ingredients = {{"raw-wood", 2.0}},
