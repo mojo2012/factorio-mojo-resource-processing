@@ -11,6 +11,7 @@ Further mods I used as basis:
 ## Dependecies
 * Factorio >= 0.12.33
 * bobores >= 0.12.7
+* mojo-advanced-tech >= 0.1.0
 
 # Current state
 * Ore crusher and pulverizer to process raw ore
