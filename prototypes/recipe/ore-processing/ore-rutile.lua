@@ -3,6 +3,7 @@ data.raw["recipe"]["rutile-plate"] = nil
 
 
 data:extend({
+  --[[
     { -- ore materials
       type = "recipe",
       name = "ore-rutile-crushed",
@@ -35,7 +36,8 @@ data:extend({
       	{"gravel", 1}
       }
     },
-    
+    ]]--
+
     { -- rutile plates (=titanium)
       type = "recipe",
       name = "titanium-plate",
@@ -52,6 +54,7 @@ data:extend({
         {"slag", 1},
       }
     },
+    --[[
     {
       type = "recipe",
       name = "titanium-plate-crushed-ore",
@@ -83,4 +86,5 @@ data:extend({
       	{"titanium-plate", 2}
       }
     },
+    ]]--
   })
