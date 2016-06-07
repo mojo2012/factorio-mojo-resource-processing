@@ -45,9 +45,6 @@ addTechnologyUnlocksRecipe("advanced-material-processing-2", "quartz-sand")
 -- tungsten
 addTechnologyUnlocksRecipe("advanced-material-processing-2", "tungsten-wire")
 
--- additional farms and production plants
-addTechnologyUnlocksRecipe("advanced-material-processing", "treehouse")
-addTechnologyUnlocksRecipe("fluid-handling", "water-well-pump")
 
 -- ore waste products
 addTechnologyUnlocksRecipe("advanced-material-processing-2", "concrete-slag")
@@ -55,9 +52,3 @@ addTechnologyUnlocksRecipe("advanced-material-processing-2", "concrete-slag")
 -- quartz glass products
 addTechnologyUnlocksRecipe("advanced-material-processing", "glass-plate")
 addTechnologyUnlocksRecipe("optics", "cut-glass")
-
--- cokery
-addTechnologyUnlocksRecipe("advanced-material-processing", "coal")
-addTechnologyUnlocksRecipe("advanced-material-processing", "cokery")
-addTechnologyUnlocksRecipe("advanced-material-processing-2", "cokery-electric")
-
