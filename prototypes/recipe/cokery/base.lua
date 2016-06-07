@@ -6,6 +6,7 @@ data:extend({
   {
     type = "recipe",
     name = "cokery",
+    category = "cokery",
     enabled = "false",
     ingredients = {
       {"stone-furnace",1},
@@ -17,6 +18,7 @@ data:extend({
   {
     type = "recipe",
     name = "cokery-electric",
+    category = "cokery",
     enabled = "false",
     ingredients = {
       {"stone", 20},
@@ -28,11 +30,32 @@ data:extend({
   },
   {
     type = "recipe",
-    name = "coal",
+    name = "charcoal",
+    icon = "__mojo-resource-processing__/graphics/icons/cokery/charcoal.png",
     enabled = "false",
     energy_required = 2,
     category = "cokery",
-    ingredients = {{"raw-wood", 2.0}},
-    result = "coal"
+    subgroup = "raw-material",
+    ingredients = {
+      {"raw-wood", 3}
+    },
+    results = {
+      {"charcoal", 3},
+      {"charcoal-dust", 1},
+    },
+  },
+  {
+    type = "recipe",
+    name = "charcoal-dust",
+    icon = "__mojo-resource-processing__/graphics/icons/cokery/charcoal-dust.png",
+    enabled = "false",
+    energy_required = 2,
+    subgroup = "raw-material",
+    ingredients = {
+      {"charcoal", 1}
+    },
+    results = {
+      {"charcoal-dust", 1}
+    },
   },
 })
