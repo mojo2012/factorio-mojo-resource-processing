@@ -10,7 +10,7 @@ local replaceableTiles =
   ["deepwater"] = "grass"
 }
 
-Event.register(defines.events, function(event)
+Event.register(defines.events.on_built_entity, function(event)
   if event.name == defines.events.on_built_entity then
     local player = game.get_player(event.player_index)
     

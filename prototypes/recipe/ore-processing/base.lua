@@ -53,4 +53,4 @@ data:extend({
 	  	{"stone-brick", 1},
 	  }
     },
-  })
+})

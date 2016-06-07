@@ -1,5 +1,26 @@
 data:extend({
-  {
+  { -- tree robot
+    type = "item",
+    name = "tree-robot",
+    icon = "__base__/graphics/icons/construction-robot.png",
+    flags = {"goes-to-quickbar"},
+    subgroup = "logistic-network",
+    order = "b",
+    place_result = "tree-robot",
+    stack_size = 50
+  },
+  { -- fertilizer chest
+    type = "item",
+    name = "treehouse-chest",
+    icon = "__base__/graphics/icons/iron-chest.png",
+    flags = {"goes-to-quickbar"},
+    fuel_value = "1MJ",
+    subgroup = "storage",
+    order = "c",
+    place_result = "treehouse-chest",
+    stack_size = 50
+  },
+  { -- tree house
     type= "item",
     name= "treehouse",
     icon = "__mojo-resource-processing__/graphics/icons/tree-farm/tree-farm.png",
@@ -9,7 +30,7 @@ data:extend({
     place_result = "treehouseOverlay",
     stack_size= 10,
   },
-  {
+  { -- trees
     type= "item",
     name= "treehand-red",
     icon = "__base__/graphics/icons/tree-09.png",
