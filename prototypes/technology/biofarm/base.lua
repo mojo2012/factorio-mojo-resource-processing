@@ -26,11 +26,12 @@ data:extend({
 		},
 		prerequisites = {"optics"},
 		unit = {
-		count = 20,
-		ingredients = {
-			{"science-pack-1", 8}
-		},
-		time = 20
+			count = 20,
+			ingredients = {
+				{"science-pack-1", 15},
+				{"science-pack-2", 2},
+			},
+			time = 20
 		}
 	},
 	{
@@ -56,12 +57,12 @@ data:extend({
 		},
 		prerequisites = {"bio-farming", "advanced-material-processing"},
 		unit = {
-		count = 20,
-		ingredients = {
-			{"science-pack-1", 10},
-			{"science-pack-2", 5},
-		},
-		time = 20
+			count = 20,
+			ingredients = {
+				{"science-pack-1", 20},
+				{"science-pack-2", 5},
+			},
+			time = 20
 		}
 	},
 	{
@@ -95,13 +96,13 @@ data:extend({
 		},
 		prerequisites = {"bio-fertilizer"},
 		unit = {
-		count = 20,
-		ingredients = {
-			{"science-pack-1", 15},
-			{"science-pack-2", 8},
-			{"science-pack-3", 5},
-		},
-		time = 20
+			count = 20,
+			ingredients = {
+				{"science-pack-1", 25},
+				{"science-pack-2", 10},
+				{"science-pack-3", 5},
+			},
+			time = 20
 		}
 	},
 	{
@@ -137,13 +138,13 @@ data:extend({
 		},
 		prerequisites = {"bio-farming", "advanced-oil-processing" },
 		unit = {
-		count = 20,
-		ingredients = {
-			{"science-pack-1", 5},
-			{"science-pack-2", 10},
-			{"science-pack-3", 2},
-		},
-		time = 20
+			count = 20,
+			ingredients = {
+				{"science-pack-1", 20},
+				{"science-pack-2", 15},
+				{"science-pack-3", 10},
+			},
+			time = 20
 		}
 	},
 })
