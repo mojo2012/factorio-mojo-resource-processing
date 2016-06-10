@@ -1,4 +1,6 @@
 data:extend({
+
+  -- machines
   {
     type = "recipe-category",
     name = "cokery"
@@ -6,7 +8,6 @@ data:extend({
   {
     type = "recipe",
     name = "cokery",
-    category = "cokery",
     enabled = "false",
     ingredients = {
       {"stone-furnace",1},
@@ -18,7 +19,6 @@ data:extend({
   {
     type = "recipe",
     name = "cokery-electric",
-    category = "cokery",
     enabled = "false",
     ingredients = {
       {"stone", 20},
@@ -28,6 +28,8 @@ data:extend({
     },
     result = "cokery-electric"
   },
+
+  -- resources
   {
     type = "recipe",
     name = "charcoal",
@@ -44,7 +46,7 @@ data:extend({
       {"charcoal-dust", 1},
     },
   },
-  {
+  --[[{
     type = "recipe",
     name = "charcoal-dust",
     icon = "__mojo-resource-processing__/graphics/icons/cokery/charcoal-dust.png",
@@ -58,4 +60,5 @@ data:extend({
       {"charcoal-dust", 1}
     },
   },
+  ]]--
 })

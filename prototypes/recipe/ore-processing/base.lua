@@ -20,8 +20,8 @@ require("prototypes.recipe.ore-processing.metal-products")
 
 
 -- gems
---require("prototypes.recipe.ore-processing.ore-rutile")
---require("prototypes.recipe.ore-processing.ore-quartz")
+require("prototypes.recipe.ore-processing.ore-rutile")
+require("prototypes.recipe.ore-processing.ore-quartz")
 --require("prototypes.recipe.ore-processing.ore-gemstone")
 
 data:extend({
@@ -52,5 +52,21 @@ data:extend({
 	  results = { 
 	  	{"stone-brick", 1},
 	  }
+    },
+
+    { -- crushed stone 
+      type = "recipe",
+      name = "stone-crushed",
+      category = "ore-crusher",
+      subgroup = "raw-resource",
+      energy_required = 2,
+      icon = "__mojo-resource-processing__/graphics/icons/ore-general/crushed-stone.png",
+      ingredients = {
+        {"stone", 2}
+      },
+      enabled = false,
+      results = {
+      	{"stone-crushed", 2}
+      }
     },
 })

@@ -26,6 +26,15 @@ data:extend({
     order = "f[slag]",
     stack_size= 50,
   },
+  { -- crushed stone
+    type= "item",
+    name= "stone-crushed",
+    icon = "__mojo-resource-processing__/graphics/icons/ore-general/crushed-stone.png",
+    flags= { "goes-to-main-inventory" },
+    subgroup = "raw-resource",
+    order = "f[stone-crushed]",
+    stack_size= 50,
+  },
 })
 
 
