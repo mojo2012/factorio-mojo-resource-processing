@@ -22,6 +22,7 @@ data:extend({
 		type = "recipe",
 		name = "biofarm",
 		enabled = "false",
+		energy_required = 10,
 		ingredients = {
 			{"iron-stick", 20},
 			{"copper-cable", 10},
@@ -34,6 +35,7 @@ data:extend({
 		type = "recipe",
 		name = "bioreactor",
 		enabled = "false",
+		energy_required = 10,
 		ingredients = {
 			{"assembling-machine-1", 1},
 			{"steel-plate", 5},
