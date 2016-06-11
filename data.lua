@@ -18,5 +18,6 @@ require("prototypes.technology.base")
 require("logic.ore-processing.init")
 require("logic.no-hand-crafting.init")
 require("logic.cokery.init")
---require("logic.tree-farm.init")
 require("logic.terraform.init")
+
+--require("logic.tree-farm.init")

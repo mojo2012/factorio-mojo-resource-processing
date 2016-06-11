@@ -37,6 +37,8 @@ data:extend({
 		flags = {"goes-to-main-inventory"},
 		subgroup = "raw-material",
 		stack_size= 50,
+		order = "a-a-a",
+    	place_result = "seedling",
 	},
 
 	-- fertilizers
