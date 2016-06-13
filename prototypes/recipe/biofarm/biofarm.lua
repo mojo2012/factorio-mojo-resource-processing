@@ -87,7 +87,7 @@ data:extend({
 			{type="item", name="charcoal-dust", amount = 1 }
 		},
 		results= {
-			{ name="fertilizer-basic", amount = 3 }
+			{ name="fertilizer-basic", amount = 1 }
 		},
 		enabled = "false"
 	},
@@ -101,7 +101,7 @@ data:extend({
 			{type="item", name="charcoal", amount = 1 }
 		},
 		results= {
-			{ name="fertilizer-basic", amount = 3 }
+			{ name="fertilizer-basic", amount = 2 }
 		},
 		enabled = "false"
 	},
@@ -152,7 +152,7 @@ data:extend({
     		{type="fluid", name="water", amount=100},
     	},
 		results = {
-			{name = "raw-wood", amount = 40},
+			{name = "raw-wood", amount = 50},
 		},
 	},
 	{
@@ -164,8 +164,8 @@ data:extend({
 		subgroup = "raw-material",
 		icon = "__base__/graphics/icons/raw-wood.png",
 		ingredients = {
-    		{type="item", name="seedling", amount=30},     
-			{type="item", name="fertilizer-basic", amount=10},     
+    		{type="item", name="seedling", amount=20},     
+			{type="item", name="fertilizer-basic", amount=3},     
     		{type="fluid", name="water", amount=100},
     	},
 		results = {
@@ -181,8 +181,8 @@ data:extend({
 		subgroup = "raw-material",
 		icon = "__base__/graphics/icons/raw-wood.png",
 		ingredients = {
-    		{type="item", name="seedling", amount=30},     
-			{type="item", name="fertilizer-advanced", amount=10},     
+    		{type="item", name="seedling", amount=15},     
+			{type="item", name="fertilizer-advanced", amount=2},     
     		{type="fluid", name="water", amount=100},
     	},
 		results = {
@@ -198,8 +198,8 @@ data:extend({
 		subgroup = "raw-material",
 		icon = "__base__/graphics/icons/raw-wood.png",
 		ingredients = {
-    		{type="item", name="seedling", amount=30},     
-			{type="item", name="fertilizer-genetically-modified", amount=10},     
+    		{type="item", name="seedling", amount=10},     
+			{type="item", name="fertilizer-genetically-modified", amount=1},     
     		{type="fluid", name="water", amount=100},
     	},
 		results = {
@@ -236,7 +236,7 @@ data:extend({
 		ingredients =
 		{
 			{type="fluid", name="water", amount=10},
-			{type="item", name="raw-wood", amount=2}
+			{type="item", name="raw-wood", amount=1}
 		},
 		results=
 		{

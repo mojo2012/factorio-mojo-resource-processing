@@ -35,14 +35,14 @@ data:extend({
     name = "charcoal",
     icon = "__mojo-resource-processing__/graphics/icons/cokery/charcoal.png",
     enabled = "false",
-    energy_required = 2,
+    energy_required = 3,
     category = "cokery",
     subgroup = "raw-material",
     ingredients = {
-      {"raw-wood", 3}
+      {"raw-wood", 1}
     },
     results = {
-      {"charcoal", 3},
+      {"charcoal", 15},
       {"charcoal-dust", 1},
     },
   },

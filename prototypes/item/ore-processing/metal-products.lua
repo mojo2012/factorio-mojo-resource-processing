@@ -72,15 +72,6 @@ data:extend(
     order = "c-a-i[tungsten-plate]",
     stack_size = 200
   },
-   {
-    type = "item",
-    name = "tungsten-wire",
-    icon = "__mojo-resource-processing__/graphics/icons/ore-tungsten/tungsten-wire.png",
-    flags = {"goes-to-main-inventory"},
-    subgroup = "raw-material",
-    order = "c-a-i[tungsten-wire]",
-    stack_size = 200
-  },
   -- rutil plate = titanium
    {
     type = "item",

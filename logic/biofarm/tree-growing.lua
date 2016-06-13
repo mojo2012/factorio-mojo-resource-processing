@@ -1,6 +1,6 @@
 -- setup data structures
 function initialise()   
-    global.logger = Logger.new("mojo-resource-processing", "tree-growing", true, nil)
+    global.logger = Logger.new("mojo-resource-processing", "tree-growing", Config.debug_mode, nil)
     global.logger.log("init tree growing")
 
     global.ts = {}
@@ -39,6 +39,8 @@ function initialise()
         ["seedling-7"] = 7,
         ["seedling-8"] = 8,
     }
+
+    global.ts.landEfficiencyDefault = 2
 end
 
 
@@ -63,7 +65,7 @@ end)
 
 Event.register(defines.events.on_built_entity, function(event)
 	-- hook when the player plants a seedling
-	if event.created_entity.name == "seedling" then
+	if event.created_entity.valid and event.created_entity.name == "seedling" then
 		if not plantSeedling(event.created_entity, event.tick) then
 			game.players[event.player_index].insert{name = event.created_entity.name, count = 1}
 		end
@@ -85,15 +87,12 @@ function plantSeedling(entity, tick)
     local landEfficiency = global.ts.landEfficiency[tilename]
 
 	if landEfficiency == nil then
-        landEfficiency = 1
+        landEfficiency = global.ts.landEfficiencyDefault
     end
 
     -- check if there are no trees too near, so we can plant
 	if #(game.get_surface("1").find_entities_filtered{area = {{x - global.ts.treeMargin, y - global.ts.treeMargin}, 
             {x + global.ts.treeMargin, y + global.ts.treeMargin}}, type = "tree"}) == 1 then
-
-        -- init random generator
-        math.randomseed(game.tick)
 
         -- setup definition for newly planted tree
 		local tempTree = {
@@ -116,7 +115,32 @@ function plantSeedling(entity, tick)
 end
 
 function setNextGrowTick(treeDefinition, tick)
-    treeDefinition.growAtTick = tick + math.floor(global.ts.growTreeTickInterval * (1 + treeDefinition.efficiency))
+    -- sets the next grow tick
+    -- less efficiency means it takes longer to grow. But we add a random number to the land efficiency as well to make it more interesting
+    -- TODO: if efficiency is below a certain level (like on sand) roll out a chance for the tree to die.
+
+    -- init random generator
+    math.randomseed(tick)
+
+    if Config.debug_mode then
+        global.logger.log("landEfficiency " .. treeDefinition.efficiency)
+    end
+
+    
+    local efficiencyInfluence = 1 - (math.random(1, 100 * treeDefinition.efficiency) / 100)
+
+    if Config.debug_mode then
+        global.logger.log("landEfficiency influence " .. efficiencyInfluence)
+    end
+
+    treeDefinition.growAtTick = tick + math.floor(
+        global.ts.growTreeTickInterval + 
+        (global.ts.growTreeTickInterval * efficiencyInfluence)
+    )
+    
+    if Config.debug_mode then
+        global.logger.log("tick " .. tick .. ": grow at tick " ..  treeDefinition.growAtTick)
+    end
 end
 
 function growTrees(event)

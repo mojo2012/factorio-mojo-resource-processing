@@ -52,9 +52,6 @@ addTechnologyUnlocksRecipe("advanced-material-processing-2", "quartz-sand")
 -- rutile / titanium
 addTechnologyUnlocksRecipe("advanced-material-processing-2", "titanium-plate")
 
--- tungsten
-addTechnologyUnlocksRecipe("advanced-material-processing-2", "tungsten-wire")
-
 -- ore waste products
 addTechnologyUnlocksRecipe("advanced-material-processing-2", "concrete-slag")
 

@@ -7,7 +7,8 @@ data:extend({
 		minable = {hardness = 0.2, mining_time = 0.1, result = "dirt"},
 		mined_sound = { filename = "__base__/sound/walking/dirt-02.ogg" },
 		collision_mask = {"ground-tile"},
-		walking_speed_modifier = dirt_walking_speed_modifier,
+		walking_speed_modifier = Config.dirt_walking_speed_modifier,
+		vehicle_friction_modifier = Config.dirt_vehicle_speed_modifier,
 		layer = 59,
 		decorative_removal_probability = 0.6,
 		variants =
@@ -80,6 +81,5 @@ data:extend({
 		},
 		map_color={r=92, g=50, b=17},
 		ageing=0,
-		vehicle_friction_modifier = dirt_vehicle_speed_modifier
 	}
 })
