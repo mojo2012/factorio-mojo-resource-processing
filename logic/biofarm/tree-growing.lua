@@ -1,6 +1,5 @@
 -- setup data structures
 function initialise()   
-    global.logger = Logger.new("mojo-resource-processing", "tree-growing", Config.debug_mode, nil)
     global.logger.log("init tree growing")
 
     global.ts = {}
