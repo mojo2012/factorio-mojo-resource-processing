@@ -62,9 +62,11 @@ global.landfill = {
 	tilePlaceholder = {
 		["water"] = "shovel-placeholder-water",
 		default = "shovel-placeholder-land",
-	}
-}
+	},
 
+	lastToolDurability = 1,
+
+}
 
 
 Event.register(defines.events.on_built_entity, function(event)
@@ -84,7 +86,7 @@ Event.register(defines.events.on_built_entity, function(event)
 
 		byProduct, transformedTiles = transformSurface(entity.position, size, surface, player)
 
-		global.logger.log(byProduct.name)
+		--global.logger.log(byProduct.name)
 
 		if byProduct.name ~= nil and byProduct.count ~= nil then
 			player.insert({ name = byProduct.name, count = byProduct.count })
@@ -94,9 +96,13 @@ Event.register(defines.events.on_built_entity, function(event)
 	if entity.valid then entity.destroy() end
 
 	player.cursor_stack.set_stack({name = entityName, count = 1})
+	reduceDurabilityOfTool(player.cursor_stack, global.landfill.lastToolDurability)
 
 end)
 
+Event.register(defines.events.on_put_item, function(event)
+	global.landfill.lastToolDurability = game.players[event.player_index].cursor_stack.durability
+end)
 
 function transformSurface(position, size, surface, player)
 	local tiles = {}
@@ -107,14 +113,18 @@ function transformSurface(position, size, surface, player)
 	local currentTileName = surface.get_tile(position.x, position.y).name
 	local targetTile = global.landfill.transformationDefinition[currentTileName]
 
-	global.logger.log("current: " .. currentTileName)
-	global.logger.log("target: " .. targetTile.replacementTileName)
+	if Config.debug_mode then
+		--global.logger.log("current: " .. currentTileName)
+		--global.logger.log("target: " .. targetTile.replacementTileName)
+	end
 
 	if targetTile.needed_resource ~= nil and targetTile.needed_resource.count > 0 then
 		local inventoryItemCount = player.get_item_count("landfill2by2")
 
-		--global.logger.log("needed resource: " .. targetTile.needed_resource.count)
-		--global.logger.log("in inventory: " .. inventoryItemCount)
+		if Config.debug_mode then
+			--global.logger.log("needed resource: " .. targetTile.needed_resource.count)
+			--global.logger.log("in inventory: " .. inventoryItemCount)
+		end
 
 		if inventoryItemCount < targetTile.needed_resource.count * (size / 2) then
 			player.print("Not enough resources")
@@ -153,9 +163,19 @@ function transformSurface(position, size, surface, player)
 	return targetTile.by_product, count
 end
 
--- build an invisible blocking entity to prevent the user from spawning to many tiles
-function buildBlockingEntity(position, size)
+-- reduce durability of shovel
+function reduceDurabilityOfTool(item, baseDurability)
+	--global.logger.log(item.durability)
 
+	local newDurability = baseDurability - (item.durability / 100 * 5)
+
+	if newDurability > 0 then
+		item.durability = newDurability
+		global.landfill.lastToolDurability = item.durability
+		--global.logger.log(item.durability)
+	else
+		item.clear()
+	end
 end
 
 
