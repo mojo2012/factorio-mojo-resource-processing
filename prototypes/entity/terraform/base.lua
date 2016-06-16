@@ -48,7 +48,7 @@ data:extend({
 		flags = {"placeable-neutral", "not-on-map"},
 		subgroup="remnants",
 		order="d[remnants]-c[wall]",
-		selection_box = {{-2.2, -2.2}, {2.2, 2.2}},
+		selection_box = {{-2.6, -2.6}, {1.7, 1.7}},
 		collision_box = {{-2.2, -2.2}, {2.2, 2.2}},
 		collision_mask = {"object-layer"},
 		selectable_in_game = false,

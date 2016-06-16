@@ -1,5 +1,7 @@
+TreeGrowing = {}
+
 -- setup data structures
-function initialise()   
+function TreeGrowing.initialise()   
     global.logger.log("init tree growing")
 
     global.ts = {}
@@ -44,13 +46,13 @@ end
 
 
 Event.register(Event.core_events.init, function()
-    initialise()
+    TreeGrowing.initialise()
 end)
 
 
 Event.register(Event.core_events.load, function()
     if global.ts == nil then
-        initialise()
+        TreeGrowing.initialise()
     end
 end)
 

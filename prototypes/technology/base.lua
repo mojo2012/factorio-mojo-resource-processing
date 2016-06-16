@@ -1,5 +1,6 @@
 require("prototypes.technology.ore-processing.base")
 require("prototypes.technology.biofarm.base")
+require("prototypes.technology.terraform.base")
 
 -- additional farms and production plants
 --addTechnologyUnlocksRecipe("advanced-material-processing", "treehouse")

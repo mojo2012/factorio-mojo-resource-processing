@@ -1,24 +1,4 @@
 data:extend({
-	-- for placing land on water
-	{
-		type = "item",
-		name = "landfill2by2",
-		icon = "__mojo-resource-processing__/graphics/icons/terraform/landfill_small.png",
-		flags = {"goes-to-main-inventory"},
-		subgroup = "transport",
-		order = "ca[landfill]",
-		stack_size = 256
-	},
-	{
-		type = "item",
-		name = "landfill4by4",
-		icon = "__mojo-resource-processing__/graphics/icons/terraform/landfill_big.png",
-		flags = {"goes-to-main-inventory"},
-		subgroup = "transport",
-		order = "cb[landfill]",
-		stack_size = 256
-	},
-
 	-- add new equipment to dig holes
  	{
 		type = "mining-tool",
@@ -43,5 +23,16 @@ data:extend({
 		speed = 2.5,
 		stack_size = 20,
 		place_result = "shovel",
+	},
+
+	-- for placing land on water
+	{
+		type = "item",
+		name = "landfill",
+		icon = "__mojo-resource-processing__/graphics/icons/terraform/landfill_big.png",
+		flags = {"goes-to-main-inventory"},
+		subgroup = "transport",
+		order = "ca[landfill]",
+		stack_size = 256
 	},
 })

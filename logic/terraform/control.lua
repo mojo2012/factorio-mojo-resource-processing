@@ -1,72 +1,102 @@
 -- setup data structures
 
+TerraForm = {}
 
-global.landfill = {
-	transformationDefinition = {
-		["water"] = {
-			replacementTileName = "sand", 
-			needed_resource = {
-				name = "landfill2by2",
-				count = 1,
+function TerraForm.initialise()
+	global.landfill = {
+		transformationDefinition = {
+			["water"] = {
+				replacementTileName = "sand", 
+				needed_resource = {
+					name = "landfill",
+					count = 1,
+				},
+				by_product = {}
 			},
-			by_product = {}
-		},
-		["deepwater"] = {
-			replacementTileName = "sand",
-			needed_resource = {
-				name = "landfill2by2",
-				count = 1,
+			["deepwater"] = {
+				replacementTileName = "sand",
+				needed_resource = {
+					name = "landfill",
+					count = 1,
+				},
+				by_product = {}
 			},
-			by_product = {}
+			["grass"] = {
+				replacementTileName = "water", 
+				by_product = {
+					name = "landfill",
+					count = 1,
+				}
+			},
+			["grass-medium"] = {
+				replacementTileName = "water", 
+				by_product = {
+					name = "landfill",
+					count = 1,
+				}
+			},
+			
+			["grass-dry"] = {
+				replacementTileName = "water", 
+				by_product = {
+					name = "landfill",
+					count = 1,
+				}
+			},
+			["dirt"] = {
+				replacementTileName = "water", 
+				by_product = {
+					name = "landfill",
+					count = 1,
+				}
+			},
+			["dirt-dark"] = {
+				replacementTileName = "water", 
+				by_product = {
+					name = "landfill",
+					count = 1,
+				}
+			},
+			["sand"] = {
+				replacementTileName = "water", 
+				by_product = {
+					name = "landfill",
+					count = 1,
+				}
+			},
+			["sand-dark"] = {
+				replacementTileName = "water", 
+				by_product = {
+					name = "landfill",
+					count = 1,
+				}
+			},
 		},
-		["grass"] = {
-			replacementTileName = "water", 
-			by_product = {
-				name = "landfill2by2",
-				count = 1,
-			}
+		shovelTransformationSize = {
+			{ name = "shovel", size = 2},
+			{ name = "shovel-big", size = 4},
 		},
-		["grass-dry"] = {
-			replacementTileName = "water", 
-			by_product = {
-				name = "landfill2by2",
-				count = 1,
-			}
+		tilePlaceholder = {
+			["water"] = "shovel-placeholder-water",
+			default = "shovel-placeholder-land",
 		},
-		["dirt"] = {
-			replacementTileName = "water", 
-			by_product = {
-				name = "landfill2by2",
-				count = 1,
-			}
-		},
-		["sand"] = {
-			replacementTileName = "water", 
-			by_product = {
-				name = "landfill2by2",
-				count = 1,
-			}
-		},
-		["sand-dark"] = {
-			replacementTileName = "water", 
-			by_product = {
-				name = "landfill2by2",
-				count = 1,
-			}
-		},
-	},
-	shovelTransformationSize = {
-		{ name = "shovel", size = 2},
-		{ name = "shovel-big", size = 4},
-	},
-	tilePlaceholder = {
-		["water"] = "shovel-placeholder-water",
-		default = "shovel-placeholder-land",
-	},
 
-	lastToolDurability = 1,
+		lastToolDurability = 1,
 
-}
+	}
+end
+
+-- event handling
+
+Event.register(Event.core_events.init, function()
+  TerraForm.initialise()
+end)
+
+Event.register(Event.core_events.load, function()
+  if global.landfill == nil then
+    TerraForm.initialise()
+  end
+end)
 
 
 Event.register(defines.events.on_built_entity, function(event)
@@ -79,7 +109,7 @@ Event.register(defines.events.on_built_entity, function(event)
 	local transformedTiles = 0
 
 	
-	if entityName:find("^shovel") ~= nil then
+	if entityName == "shovel" or entityName == "shovel-big" then
 		local size = 2
 
 		if entityName == "shovel-big" then size = 4 end
@@ -91,18 +121,23 @@ Event.register(defines.events.on_built_entity, function(event)
 		if byProduct.name ~= nil and byProduct.count ~= nil then
 			player.insert({ name = byProduct.name, count = byProduct.count })
 		end
+
+		if entity.valid then entity.destroy() end
+
+		player.cursor_stack.set_stack({name = entityName, count = 1})
+		reduceDurabilityOfTool(player.cursor_stack, global.landfill.lastToolDurability)
 	end
-	
-	if entity.valid then entity.destroy() end
-
-	player.cursor_stack.set_stack({name = entityName, count = 1})
-	reduceDurabilityOfTool(player.cursor_stack, global.landfill.lastToolDurability)
-
 end)
 
 Event.register(defines.events.on_put_item, function(event)
-	global.landfill.lastToolDurability = game.players[event.player_index].cursor_stack.durability
+	local item = game.players[event.player_index].cursor_stack
+
+	if item.valid and (item.name == "shovel" or item.name == "shovel-big") then
+		global.landfill.lastToolDurability = game.players[event.player_index].cursor_stack.durability
+	end
 end)
+
+-- functions
 
 function transformSurface(position, size, surface, player)
 	local tiles = {}
@@ -119,7 +154,7 @@ function transformSurface(position, size, surface, player)
 	end
 
 	if targetTile.needed_resource ~= nil and targetTile.needed_resource.count > 0 then
-		local inventoryItemCount = player.get_item_count("landfill2by2")
+		local inventoryItemCount = player.get_item_count("landfill")
 
 		if Config.debug_mode then
 			--global.logger.log("needed resource: " .. targetTile.needed_resource.count)
@@ -132,7 +167,7 @@ function transformSurface(position, size, surface, player)
 			return {}, 0
 		end
 
-		player.remove_item({ name = "landfill2by2", count = targetTile.needed_resource.count})
+		player.remove_item({ name = "landfill", count = targetTile.needed_resource.count})
 	end
 
 

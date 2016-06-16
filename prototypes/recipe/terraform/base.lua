@@ -1,64 +1,47 @@
 data:extend(
 	{
+		{ -- shovel
+			type = "recipe",
+			name = "shovel",
+			enabled = "false",
+			ingredients =
+			{
+				{"wood", 1},
+				{"iron-plate", 1},
+			},
+			result = "shovel"
+		},
+
+		-- landfills
 		{
 			type = "recipe",
-			name = "landfill2by2-stone",
-			enabled = "true",
+			name = "landfill-stone",
+			enabled = "false",
 			ingredients =
 			{
 				{"stone", 10}
 			},
-			result = "landfill2by2"
+			result = "landfill"
 		},
 		{
 			type = "recipe",
-			name = "landfill4by4-stone",
-			enabled = "true",
-			ingredients =
-			{
-				{"stone", 20}
-			},
-			result = "landfill4by4"
-		},
-		{
-			type = "recipe",
-			name = "landfill2by2-gravel",
-			enabled = "true",
-			ingredients =
-			{
-				{"gravel", 10}
-			},
-			result = "landfill2by2"
-		},
-		{
-			type = "recipe",
-			name = "landfill4by4-gravel",
-			enabled = "true",
-			ingredients =
-			{
-				{"gravel", 20}
-			},
-			result = "landfill4by4"
-		},
-		{
-			type = "recipe",
-			name = "landfill2by2-dirt",
-			enabled = "true",
+			name = "landfill-dirt",
+			enabled = "false",
 			ingredients =
 			{
 				{"dirt", 10}
 			},
-			result = "landfill2by2"
+			result = "landfill"
 		},
 		{
 			type = "recipe",
-			name = "landfill4by4-dirt",
-			enabled = "true",
+			name = "landfill-gravel",
+			enabled = "false",
 			ingredients =
 			{
-				{"dirt", 20}
+				{"gravel", 10}
 			},
-			result = "landfill4by4"
+			result = "landfill"
 		},
 	}
 )
