@@ -1,4 +1,3 @@
-require "defines"
 
 function initialise()
   global.th = {}
@@ -166,7 +165,7 @@ end)
 
 Event.register(defines.events.on_built_entity, function(event)
   if event.created_entity.name == "treehouseOverlay" then
-    local ent = game.get_surface("1").create_entity{name = "treehouse", position = event.created_entity.position, force = event.created_entity.force}
+    local ent = game.surfaces[1].create_entity{name = "treehouse", position = event.created_entity.position, force = event.created_entity.force}
     event.created_entity.destroy()
     initTreehouse(event.tick, ent, event.player_index)
   elseif event.created_entity.name == "treehand" or event.created_entity.name == "treehand-red" then
@@ -181,7 +180,7 @@ end)
 
 Event.register(defines.events.on_robot_built_entity, function(event)
   if event.created_entity.name == "treehouseOverlay" then
-    local ent = game.get_surface("1").create_entity{name = "treehouse", position = event.created_entity.position, force = event.created_entity.force}
+    local ent = game.surfaces[1].create_entity{name = "treehouse", position = event.created_entity.position, force = event.created_entity.force}
     event.created_entity.destroy()
     initTreehouse(event.tick, ent, event.player_index)
   elseif event.created_entity.name == "treehand" or event.created_entity.name == "treehand-red" then
@@ -329,8 +328,8 @@ function initTreehouse(tick, houseentity, player_index)
 
   local fertilizerchest = findFertilizerchest(houseentity)
   local position = {houseentity.position.x, houseentity.position.y + 2}
-  if fertilizerchest == nil and game.get_surface("1").can_place_entity{name = "treehouse-chest", position = position, force = game.forces.player} then
-    fertilizerchest = game.get_surface("1").create_entity{name = "treehouse-chest", position = position, force = game.forces.player}
+  if fertilizerchest == nil and game.surfaces[1].can_place_entity{name = "treehouse-chest", position = position, force = game.forces.player} then
+    fertilizerchest = game.surfaces[1].create_entity{name = "treehouse-chest", position = position, force = game.forces.player}
   end
   global.th.houselist[index].fertilizerchest = fertilizerchest
 
@@ -338,7 +337,7 @@ function initTreehouse(tick, houseentity, player_index)
 end
 
 function findFertilizerchest(houseentity)
-  return game.get_surface(1).find_entity("treehouse-chest", {houseentity.position.x, houseentity.position.y + 2})
+  return game.surfaces[1].find_entity("treehouse-chest", {houseentity.position.x, houseentity.position.y + 2})
 end
 
 function insertSeeds(event)
@@ -373,7 +372,7 @@ function insertSeeds(event)
       if treehouse.houseentity.valid and robotfreenum > 0 then
         local robotworknum = 1
         if house_state == 3 then
-          local treeEnts = game.get_surface("1").find_entities_filtered{area = {{treehouse.left, treehouse.top}, {treehouse.left + treehouse.house_size * 2 - 1, treehouse.top + treehouse.house_size * 2 - 1}}, type = "tree"}
+          local treeEnts = game.surfaces[1].find_entities_filtered{area = {{treehouse.left, treehouse.top}, {treehouse.left + treehouse.house_size * 2 - 1, treehouse.top + treehouse.house_size * 2 - 1}}, type = "tree"}
           for _, tree in ipairs(treeEnts) do
             if robotfreenum <= 0 then
               break
@@ -433,7 +432,7 @@ function insertSeeds(event)
                 end
               else
                 local canplace = true
-                local treeEnts = game.get_surface("1").find_entities_filtered{area = {{x - 1.5, y - 1.5}, {x + 1.5, y + 1.5}}, type = "tree"}
+                local treeEnts = game.surfaces[1].find_entities_filtered{area = {{x - 1.5, y - 1.5}, {x + 1.5, y + 1.5}}, type = "tree"}
                 if house_state == 2 and #treeEnts > 0 then
                   canplace = false
                 else
@@ -471,7 +470,7 @@ function insertSeeds(event)
 
                 local tilename = "none"
                 if canplace then
-                  tilename = game.get_surface("1").get_tile(x, y).name
+                  tilename = game.surfaces[1].get_tile(x, y).name
                 end
                 if canplace and global.th.land_efficiency[tilename] ~= nil then
                   local robotworking = false
@@ -481,7 +480,7 @@ function insertSeeds(event)
                       break
                     end
                   end
-                  if (not robotworking) and game.get_surface("1").can_place_entity{name = "treehouse-4", position = {x, y}, force = game.forces.player} then
+                  if (not robotworking) and game.surfaces[1].can_place_entity{name = "treehouse-4", position = {x, y}, force = game.forces.player} then
                     robotfreeinfo[robotworknum].state = "gohome"
                     robotfreeinfo[robotworknum].secstate = "planting"
                     robotfreeinfo[robotworknum].curtime = event.tick
@@ -569,7 +568,7 @@ function growTrees(event)
           if treetype ~= 5 and treetype ~= 9 then
             treeinfo.curtime = event.tick
             treeinfo.feeding = 0
-            treeinfo.treeentity = game.get_surface("1").create_entity{name = "treehouse-" .. treetype, position = position, force = game.forces.player}
+            treeinfo.treeentity = game.surfaces[1].create_entity{name = "treehouse-" .. treetype, position = position, force = game.forces.player}
           else
             local tree_name = ""
             if treetype == 9 then
@@ -578,7 +577,7 @@ function growTrees(event)
               tree_name = "tree-09-red"
             end
             
-            treeinfo.treeentity = game.get_surface("1").create_entity{name = tree_name, position = position, force = game.forces.player}
+            treeinfo.treeentity = game.surfaces[1].create_entity{name = tree_name, position = position, force = game.forces.player}
             global.th.treelist[index] = nil
           end
           
@@ -782,7 +781,7 @@ function createTreehouseSize(playerdata, house_size)
         for i = 1, max_size, 1 do
           local x = left + (i - 1) % line + 0.5
           local y = top + math.floor((i - 1) / line) + 0.5
-          table.insert(playerdata.sizelist, game.get_surface("1").create_entity{name = "treehouse-size", position = {x = x, y = y}, force = game.forces.player})
+          table.insert(playerdata.sizelist, game.surfaces[1].create_entity{name = "treehouse-size", position = {x = x, y = y}, force = game.forces.player})
         end
       end
     end
@@ -805,11 +804,11 @@ function createTreeHand(entity, tick)
   for i = 1, 9, 1 do
     local x = left + ((i - 1) % 3) * 2 + 0.5
     local y = top + math.floor((i - 1) / 3) * 2 + 0.5
-    local tilename = game.get_surface("1").get_tile(x, y).name
+    local tilename = game.surfaces[1].get_tile(x, y).name
     if global.th.land_efficiency[tilename] ~= nil then
-      if #(game.get_surface("1").find_entities_filtered{area = {{x - 1.5, y - 1.5}, {x + 1.5, y + 1.5}}, type = "tree"}) == 0 then
-        if game.get_surface("1").can_place_entity{name = treename, position = {x, y}, force = game.forces.player} then
-          local treeentity = game.get_surface("1").create_entity{name = treename, position = {x, y}, force = game.forces.player}
+      if #(game.surfaces[1].find_entities_filtered{area = {{x - 1.5, y - 1.5}, {x + 1.5, y + 1.5}}, type = "tree"}) == 0 then
+        if game.surfaces[1].can_place_entity{name = treename, position = {x, y}, force = game.forces.player} then
+          local treeentity = game.surfaces[1].create_entity{name = treename, position = {x, y}, force = game.forces.player}
           local treetemp = {
             housepos = 0,
             treepos = 0,
@@ -862,7 +861,7 @@ end
 function createTreeRobots(event)
   local position = event.created_entity.position
   local areapos = {{position.x - 16, position.y - 16}, {position.x + 16, position.y + 16}}
-  local treehouseents = game.get_surface("1").find_entities_filtered{area = areapos, name = "treehouse"}
+  local treehouseents = game.surfaces[1].find_entities_filtered{area = areapos, name = "treehouse"}
   local robotdata = nil
   local distance = 10000;
   for _, foundtreehouse in ipairs(treehouseents) do
@@ -1021,9 +1020,9 @@ function robotbaseworking(event, treehouse)
           if checkPositionEdge(robot.treeinfo.position, robot.robotentity.position.x, robot.robotentity.position.y) then
             local x = robot.treeinfo.position.x
             local y = robot.treeinfo.position.y
-            if #game.get_surface("1").find_entities_filtered{area = {{x - 1.5, y - 1.5}, {x + 1.5, y + 1.5}}, type = "tree"} == 0 and game.get_surface("1").can_place_entity{name = robot.treeinfo.seedname, position = robot.treeinfo.position, force = game.forces.player} then
+            if #game.surfaces[1].find_entities_filtered{area = {{x - 1.5, y - 1.5}, {x + 1.5, y + 1.5}}, type = "tree"} == 0 and game.surfaces[1].can_place_entity{name = robot.treeinfo.seedname, position = robot.treeinfo.position, force = game.forces.player} then
               treehouse.treedata[robot.treeinfo.treepos] = {}
-              treehouse.treedata[robot.treeinfo.treepos].treeentity = game.get_surface("1").create_entity{name = robot.treeinfo.seedname, position = robot.treeinfo.position, force = game.forces.player}
+              treehouse.treedata[robot.treeinfo.treepos].treeentity = game.surfaces[1].create_entity{name = robot.treeinfo.seedname, position = robot.treeinfo.position, force = game.forces.player}
               treehouse.treedata[robot.treeinfo.treepos].curtime = event.tick
               treehouse.treedata[robot.treeinfo.treepos].efficiency = robot.treeinfo.efficiency
               treehouse.treedata[robot.treeinfo.treepos].treeinfo = robot.treeinfo
@@ -1094,7 +1093,7 @@ function robotbaseworking(event, treehouse)
           robotfreeinfo[#robotfreeinfo + 1] = robot
         end
       else
-        local entity = game.get_surface("1").create_entity{name = "tree-robot", position = {x = treehouse.position.x, y = treehouse.position.y - 3}, force = game.forces.player}
+        local entity = game.surfaces[1].create_entity{name = "tree-robot", position = {x = treehouse.position.x, y = treehouse.position.y - 3}, force = game.forces.player}
         robot.robotentity = entity
         if robot.state == "free" then
           robotfreeinfo[#robotfreeinfo + 1] = robot

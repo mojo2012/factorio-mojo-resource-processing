@@ -100,7 +100,7 @@ end)
 
 
 Event.register(defines.events.on_built_entity, function(event)
-	local player = game.get_player(event.player_index)
+	local player = game.players[event.player_index]
 	local surface = player.surface
 	local entity = event.created_entity
 	local entityName = entity.name

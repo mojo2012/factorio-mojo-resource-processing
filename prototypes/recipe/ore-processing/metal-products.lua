@@ -1,7 +1,8 @@
+--[[
 data:extend(
 {
   
-   --[[{
+   {
     type = "recipe",
     name = "cobalt-plate",
     category = "chemical-furnace",
@@ -102,8 +103,8 @@ data:extend(
       {"lithium-chloride", 1},
     },
     result = "lithium",
-  },]]--
-}
+  },
 )
 
 
+]]--

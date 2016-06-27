@@ -84,7 +84,7 @@ function plantSeedling(entity, tick)
 	local x = math.floor(entity.position.x)
 	local y = math.floor(entity.position.y)
 
-	local tilename = game.get_surface("1").get_tile(x, y).name
+	local tilename = game.surfaces[1].get_tile(x, y).name
     local landEfficiency = global.ts.landEfficiency[tilename]
 
 	if landEfficiency == nil then
@@ -92,7 +92,7 @@ function plantSeedling(entity, tick)
     end
 
     -- check if there are no trees too near, so we can plant
-	if #(game.get_surface("1").find_entities_filtered{area = {{x - global.ts.treeMargin, y - global.ts.treeMargin}, 
+	if #(game.surfaces[1].find_entities_filtered{area = {{x - global.ts.treeMargin, y - global.ts.treeMargin}, 
             {x + global.ts.treeMargin, y + global.ts.treeMargin}}, type = "tree"}) == 1 then
 
         -- setup definition for newly planted tree
@@ -100,7 +100,7 @@ function plantSeedling(entity, tick)
 			tickAtPlantingTime = tick,
 			efficiency = landEfficiency,
 			position = {x = x, y = y},
-			entity = game.get_surface("1").create_entity{name = treeName, position = {x, y}, force = game.forces.player},
+			entity = game.surfaces[1].create_entity{name = treeName, position = {x, y}, force = game.forces.player},
 		}
 
         -- store next grow tick in tree definition
@@ -163,7 +163,7 @@ function growTrees(event)
 				
                 -- grow tree
                 if treeType ~= 5 and treeType ~= 9 then
-					seedling.entity = game.get_surface("1").create_entity{name = "seedling-" .. treeType, position = position, force = game.forces.player}
+					seedling.entity = game.surfaces[1].create_entity{name = "seedling-" .. treeType, position = position, force = game.forces.player}
 
                     -- update next grow tick in tree definition
                     setNextGrowTick(seedling, event.tick)
@@ -178,7 +178,7 @@ function growTrees(event)
 						treeName = "tree-09-red"
 					end
 					
-					seedling.entity = game.get_surface("1").create_entity{name = treeName, position = position, force = game.forces.player}
+					seedling.entity = game.surfaces[1].create_entity{name = treeName, position = position, force = game.forces.player}
 
                     -- remove from seedling table, as already grown up
 					table.remove(global.ts.seedlings, index)
