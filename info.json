@@ -4,7 +4,7 @@
   "title": "mojo-resource-processing",
   "author": "mojo2012",
   "homepage": "",
-  "dependencies": ["base >= 0.12.33", "bobores >= 0.12.7"],
+  "dependencies": ["base >= 0.13", "bobores >= 0.12.7"],
   "factorio_version": "0.13",
   "description": ""
 }
