@@ -1,3 +1,5 @@
+require("prototypes.entity.terraform.terrain")
+
 data:extend({
 	{
 		type = "decorative",

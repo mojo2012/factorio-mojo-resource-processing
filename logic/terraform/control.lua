@@ -5,6 +5,14 @@ TerraForm = {}
 function TerraForm.initialise()
 	global.landfill = {
 		transformationDefinition = {
+			["moat"] = {
+				replacementTileName = "sand", 
+				needed_resource = {
+					name = "landfill",
+					count = 1,
+				},
+				by_product = {}
+			},
 			["water"] = {
 				replacementTileName = "sand", 
 				needed_resource = {
@@ -22,14 +30,14 @@ function TerraForm.initialise()
 				by_product = {}
 			},
 			["grass"] = {
-				replacementTileName = "water", 
+				replacementTileName = "moat", 
 				by_product = {
 					name = "landfill",
 					count = 1,
 				}
 			},
 			["grass-medium"] = {
-				replacementTileName = "water", 
+				replacementTileName = "moat", 
 				by_product = {
 					name = "landfill",
 					count = 1,
@@ -37,41 +45,42 @@ function TerraForm.initialise()
 			},
 			
 			["grass-dry"] = {
-				replacementTileName = "water", 
+				replacementTileName = "moat", 
 				by_product = {
 					name = "landfill",
 					count = 1,
 				}
 			},
 			["dirt"] = {
-				replacementTileName = "water", 
+				replacementTileName = "moat", 
 				by_product = {
 					name = "landfill",
 					count = 1,
 				}
 			},
 			["dirt-dark"] = {
-				replacementTileName = "water", 
+				replacementTileName = "moat", 
 				by_product = {
 					name = "landfill",
 					count = 1,
 				}
 			},
+
+			-- cannot dig a hole in the sand
+			--[[
 			["sand"] = {
-				replacementTileName = "water", 
-				by_product = {
-					name = "landfill",
-					count = 1,
-				}
+				replacementTileName = "sand", 
+				by_product = { }
 			},
 			["sand-dark"] = {
-				replacementTileName = "water", 
-				by_product = {
-					name = "landfill",
-					count = 1,
-				}
+				replacementTileName = "sand", 
+				by_product = { }
 			},
+			]]--
 		},
+		floodableTiles = {
+			["moat"] = "water",
+		}
 		shovelTransformationSize = {
 			{ name = "shovel", size = 2},
 			{ name = "shovel-big", size = 4},
@@ -153,7 +162,7 @@ function transformSurface(position, size, surface, player)
 		--global.logger.log("target: " .. targetTile.replacementTileName)
 	end
 
-	if targetTile.needed_resource ~= nil and targetTile.needed_resource.count > 0 then
+	if targetTile ~= nil and targetTile.needed_resource ~= nil and targetTile.needed_resource.count > 0 then
 		local inventoryItemCount = player.get_item_count("landfill")
 
 		if Config.debug_mode then
@@ -168,6 +177,9 @@ function transformSurface(position, size, surface, player)
 		end
 
 		player.remove_item({ name = "landfill", count = targetTile.needed_resource.count})
+	else
+		player.print("Cannot terraform here")
+		return {}, 0
 	end
 
 
@@ -213,7 +225,9 @@ function reduceDurabilityOfTool(item, baseDurability)
 	end
 end
 
-
+function findAdjacentTiles(tile, tileLookingFor)
+	
+end
 
 
 
