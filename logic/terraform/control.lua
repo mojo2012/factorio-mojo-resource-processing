@@ -1,8 +1,14 @@
 -- setup data structures
 
+require("stdlib.area.position")
+require("stdlib.area.tile")
+require("stdlib.area.area")
+
 TerraForm = {}
 
 function TerraForm.initialise()
+	global.logger = Logger.new("mojo-resource-processing", nil, Config.debug_mode, nil)
+
 	global.landfill = {
 		transformationDefinition = {
 			["moat"] = {
@@ -80,7 +86,7 @@ function TerraForm.initialise()
 		},
 		floodableTiles = {
 			["moat"] = "water",
-		}
+		},
 		shovelTransformationSize = {
 			{ name = "shovel", size = 2},
 			{ name = "shovel-big", size = 4},
@@ -88,6 +94,11 @@ function TerraForm.initialise()
 		tilePlaceholder = {
 			["water"] = "shovel-placeholder-water",
 			default = "shovel-placeholder-land",
+		},
+
+		transformTileSize = {
+			["shovel"] = 2,
+			["shovel-big"] = 4,
 		},
 
 		lastToolDurability = 1,
@@ -98,13 +109,13 @@ end
 -- event handling
 
 Event.register(Event.core_events.init, function()
-  TerraForm.initialise()
+	TerraForm.initialise()
 end)
 
 Event.register(Event.core_events.load, function()
-  if global.landfill == nil then
-    TerraForm.initialise()
-  end
+	if global.landfill == nil then
+		TerraForm.initialise()
+	end
 end)
 
 
@@ -119,11 +130,9 @@ Event.register(defines.events.on_built_entity, function(event)
 
 	
 	if entityName == "shovel" or entityName == "shovel-big" then
-		local size = 2
+		local tileSize = global.landfill.transformTileSize[entityName]
 
-		if entityName == "shovel-big" then size = 4 end
-
-		byProduct, transformedTiles = transformSurface(entity.position, size, surface, player)
+		byProduct, transformedTiles = transformSurface(entity.position, tileSize, surface, player)
 
 		--global.logger.log(byProduct.name)
 
@@ -157,17 +166,24 @@ function transformSurface(position, size, surface, player)
 	local currentTileName = surface.get_tile(position.x, position.y).name
 	local targetTile = global.landfill.transformationDefinition[currentTileName]
 
-	if Config.debug_mode then
-		--global.logger.log("current: " .. currentTileName)
-		--global.logger.log("target: " .. targetTile.replacementTileName)
+	-- if there is no no tile found for this source tile, we just stop here
+	if targetTile == nil then
+		player.print("Cannot terraform here")
+		return {}, 0
 	end
 
-	if targetTile ~= nil and targetTile.needed_resource ~= nil and targetTile.needed_resource.count > 0 then
-		local inventoryItemCount = player.get_item_count("landfill")
+	if Config.debug_mode then
+		global.logger.log("current: " .. currentTileName)
+		global.logger.log("target: " .. targetTile.replacementTileName)
+	end
+
+	-- if we need resources for this surface transformation ....
+	if targetTile.needed_resource ~= nil and targetTile.needed_resource.count > 0 then
+		local inventoryItemCount = player.get_item_count(targetTile.needed_resource.name)
 
 		if Config.debug_mode then
-			--global.logger.log("needed resource: " .. targetTile.needed_resource.count)
-			--global.logger.log("in inventory: " .. inventoryItemCount)
+			global.logger.log("needed resource: " .. targetTile.needed_resource.count)
+			global.logger.log("in inventory: " .. inventoryItemCount)
 		end
 
 		if inventoryItemCount < targetTile.needed_resource.count * (size / 2) then
@@ -175,11 +191,8 @@ function transformSurface(position, size, surface, player)
 
 			return {}, 0
 		end
-
-		player.remove_item({ name = "landfill", count = targetTile.needed_resource.count})
-	else
-		player.print("Cannot terraform here")
-		return {}, 0
+		-- .. we removed them from the inventory
+		player.remove_item(targetTile.needed_resource)
 	end
 
 
@@ -198,16 +211,35 @@ function transformSurface(position, size, surface, player)
 		surface.set_tiles(tiles)
 	end
 
+	placePlaceholder(position, targetTile.replacementTileName, surface)
+
+	--floodHole(tiles)
+
+	return targetTile.by_product, count
+end
+
+
+-- if the new surface is a hole (=moat tile) then we try to flood it, if it is adjacent to a water tile
+function floodHole(tiles)
+	local connectedMoatTiles = {}
+
+	for i, tile in pairs(tiles) do
+		if tile.name == "moat" then
+			local area = Position.expand_to_area(tile.position, 1)
+
+		end
+	end
+end
+
+-- place a placeholder above the newly created tiles, so we avoid spamming of new tiles
+function placePlaceholder(position, tileName, surface)
 	local placeholderName = global.landfill.tilePlaceholder.default
 
-	if global.landfill.tilePlaceholder[targetTile.replacementTileName] ~= nil then
-		placeholderName = global.landfill.tilePlaceholder[targetTile.replacementTileName]
+	if global.landfill.tilePlaceholder[tileName] ~= nil then
+		placeholderName = global.landfill.tilePlaceholder[tileName]
 	end	
 
 	surface.create_entity({ name = placeholderName, count = 1, position = position})
-
-
-	return targetTile.by_product, count
 end
 
 -- reduce durability of shovel
@@ -226,7 +258,7 @@ function reduceDurabilityOfTool(item, baseDurability)
 end
 
 function findAdjacentTiles(tile, tileLookingFor)
-	
+
 end
 
 
