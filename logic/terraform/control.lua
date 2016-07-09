@@ -3,6 +3,7 @@
 require("stdlib.area.position")
 require("stdlib.area.tile")
 require("stdlib.area.area")
+require("lib.utilities")
 
 TerraForm = {}
 
@@ -12,7 +13,7 @@ function TerraForm.initialise()
 	global.landfill = {
 		transformationDefinition = {
 			["moat"] = {
-				replacementTileName = "sand", 
+				replacementTileName = "dirt-dark", 
 				needed_resource = {
 					name = "landfill",
 					count = 1,
@@ -20,7 +21,7 @@ function TerraForm.initialise()
 				by_product = {}
 			},
 			["water"] = {
-				replacementTileName = "sand", 
+				replacementTileName = "dirt-dark", 
 				needed_resource = {
 					name = "landfill",
 					count = 1,
@@ -28,7 +29,7 @@ function TerraForm.initialise()
 				by_product = {}
 			},
 			["deepwater"] = {
-				replacementTileName = "sand",
+				replacementTileName = "dirt-dark",
 				needed_resource = {
 					name = "landfill",
 					count = 1,
@@ -85,16 +86,18 @@ function TerraForm.initialise()
 			]]--
 		},
 		floodableTiles = {
-			["moat"] = "water",
+			["moat"] = {
+				floodableBy = {
+					"water", "deep-water"
+				}
+			}
 		},
 		shovelTransformationSize = {
 			{ name = "shovel", size = 2},
 			{ name = "shovel-big", size = 4},
 		},
-		tilePlaceholder = {
-			["water"] = "shovel-placeholder-water",
-			default = "shovel-placeholder-land",
-		},
+
+		tilePlaceholder = "shovel-placeholder",
 
 		transformTileSize = {
 			["shovel"] = 2,
@@ -202,44 +205,61 @@ function transformSurface(position, size, surface, player)
 
 			local playerFound = surface.find_entity("player", { x = xpos + x, y = ypos + y})
 
-			table.insert(tiles,{name=targetTile.replacementTileName, position={xpos + x, ypos + y}})
+			table.insert(tiles, {name=targetTile.replacementTileName, position={xpos + x, ypos + y}})
 		end
 	end
 
 	if #tiles ~= 0 then
 		count = #tiles
+
+		-- try to flood tiles if possible
+		floodHoles(tiles, surface)
+
 		surface.set_tiles(tiles)
+
+		-- avoid spamming
+		placePlaceholder(position, targetTile.replacementTileName, surface)
 	end
-
-	placePlaceholder(position, targetTile.replacementTileName, surface)
-
-	--floodHole(tiles)
 
 	return targetTile.by_product, count
 end
 
 
 -- if the new surface is a hole (=moat tile) then we try to flood it, if it is adjacent to a water tile
-function floodHole(tiles)
-	local connectedMoatTiles = {}
+function floodHoles(tiles, surface)
+	local floodedTiles = {}
 
 	for i, tile in pairs(tiles) do
-		if tile.name == "moat" then
-			local area = Position.expand_to_area(tile.position, 1)
+		-- run loop as long as no floodable tile is found
+		local floodDefinition = global.landfill.floodableTiles[tile.name]
 
+		if floodDefinition ~= nil then
+			global.logger.log("Flood: current tile: " .. tile.name )
+
+			-- get surrounding tiles and check if its water
+			local area = Position.expand_to_area(tile.position, 3)
+
+			for x, y in Area.iterate(area) do
+				--local tmpTile = Tile.from_position({x = x, y = y})
+				local tmpTile = surface.get_tile(x, y)
+
+				if tmpTile.name ~= nil then
+					global.logger.log("flood: iterate tile: " .. x .. "-" .. y .. ": " .. tmpTile.name)
+				end
+
+				for i, floodableBy in pairs(floodDefinition.floodableBy) do
+					if tmpTile.name == floodableBy then
+						tile.name = floodableBy
+					end
+				end
+			end
 		end
 	end
 end
 
 -- place a placeholder above the newly created tiles, so we avoid spamming of new tiles
 function placePlaceholder(position, tileName, surface)
-	local placeholderName = global.landfill.tilePlaceholder.default
-
-	if global.landfill.tilePlaceholder[tileName] ~= nil then
-		placeholderName = global.landfill.tilePlaceholder[tileName]
-	end	
-
-	surface.create_entity({ name = placeholderName, count = 1, position = position})
+	surface.create_entity({ name = global.landfill.tilePlaceholder, count = 1, position = position})
 end
 
 -- reduce durability of shovel
