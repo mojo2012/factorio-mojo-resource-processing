@@ -8,8 +8,6 @@ require("lib.utilities")
 TerraForm = {}
 
 function TerraForm.initialise()
-	global.logger = Logger.new("mojo-resource-processing", nil, Config.debug_mode, nil)
-
 	global.landfill = {
 		transformationDefinition = {
 			["moat"] = {
@@ -115,10 +113,8 @@ Event.register(Event.core_events.init, function()
 	TerraForm.initialise()
 end)
 
-Event.register(Event.core_events.load, function()
-	if global.landfill == nil then
-		TerraForm.initialise()
-	end
+Event.register(Event.core_events.configuration_changed, function(event)
+    TerraForm.initialise()    
 end)
 
 
@@ -137,7 +133,7 @@ Event.register(defines.events.on_built_entity, function(event)
 
 		byProduct, transformedTiles = transformSurface(entity.position, tileSize, surface, player)
 
-		--global.logger.log(byProduct.name)
+		--LOG.log(byProduct.name)
 
 		if byProduct.name ~= nil and byProduct.count ~= nil then
 			player.insert({ name = byProduct.name, count = byProduct.count })
@@ -153,7 +149,7 @@ end)
 Event.register(defines.events.on_put_item, function(event)
 	local item = game.players[event.player_index].cursor_stack
 
-	if item.valid and (item.name == "shovel" or item.name == "shovel-big") then
+	if item.valid_for_read and (item.name == "shovel" or item.name == "shovel-big") then
 		global.landfill.lastToolDurability = game.players[event.player_index].cursor_stack.durability
 	end
 end)
@@ -176,8 +172,8 @@ function transformSurface(position, size, surface, player)
 	end
 
 	if Config.debug_mode then
-		global.logger.log("current: " .. currentTileName)
-		global.logger.log("target: " .. targetTile.replacementTileName)
+		LOG.log("current: " .. currentTileName)
+		LOG.log("target: " .. targetTile.replacementTileName)
 	end
 
 	-- if we need resources for this surface transformation ....
@@ -185,8 +181,8 @@ function transformSurface(position, size, surface, player)
 		local inventoryItemCount = player.get_item_count(targetTile.needed_resource.name)
 
 		if Config.debug_mode then
-			global.logger.log("needed resource: " .. targetTile.needed_resource.count)
-			global.logger.log("in inventory: " .. inventoryItemCount)
+			LOG.log("needed resource: " .. targetTile.needed_resource.count)
+			LOG.log("in inventory: " .. inventoryItemCount)
 		end
 
 		if inventoryItemCount < targetTile.needed_resource.count * (size / 2) then
@@ -234,7 +230,7 @@ function floodHoles(tiles, surface)
 		local floodDefinition = global.landfill.floodableTiles[tile.name]
 
 		if floodDefinition ~= nil then
-			global.logger.log("Flood: current tile: " .. tile.name )
+			LOG.log("Flood: current tile: " .. tile.name )
 
 			-- get surrounding tiles and check if its water
 			local area = Position.expand_to_area(tile.position, 3)
@@ -244,7 +240,7 @@ function floodHoles(tiles, surface)
 				local tmpTile = surface.get_tile(x, y)
 
 				if tmpTile.name ~= nil then
-					global.logger.log("flood: iterate tile: " .. x .. "-" .. y .. ": " .. tmpTile.name)
+					LOG.log("flood: iterate tile: " .. x .. "-" .. y .. ": " .. tmpTile.name)
 				end
 
 				for i, floodableBy in pairs(floodDefinition.floodableBy) do
@@ -264,14 +260,14 @@ end
 
 -- reduce durability of shovel
 function reduceDurabilityOfTool(item, baseDurability)
-	--global.logger.log(item.durability)
+	--LOG.log(item.durability)
 
 	local newDurability = baseDurability - (item.durability / 100 * 5)
 
 	if newDurability > 0 then
 		item.durability = newDurability
 		global.landfill.lastToolDurability = item.durability
-		--global.logger.log(item.durability)
+		--LOG.log(item.durability)
 	else
 		item.clear()
 	end

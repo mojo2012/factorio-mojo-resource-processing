@@ -5,10 +5,11 @@ require "util"
 require "stdlib.log.logger"
 require "stdlib.event.event"
 
-global.logger = Logger.new("mojo-resource-processing", nil, Config.debug_mode, nil)
-
 --some helper function
 require("lib.helper")
+
+LOG = Logger.new("mojo-resource-processing", nil, Config.debug_mode, nil)
+
 
 -- specific event handling for the various sub parts of the mod
 require("logic.terraform.control")

@@ -2,7 +2,7 @@ TreeGrowing = {}
 
 -- setup data structures
 function TreeGrowing.initialise()   
-    global.logger.log("init tree growing")
+    --LOG.log("init tree growing")
 
     global.ts = {}
 
@@ -50,12 +50,9 @@ Event.register(Event.core_events.init, function()
 end)
 
 
-Event.register(Event.core_events.load, function()
-    if global.ts == nil then
-        TreeGrowing.initialise()
-    end
+Event.register(Event.core_events.configuration_changed, function(event)
+    TreeGrowing.initialise()
 end)
-
 
 Event.register(defines.events.on_tick, function(event)
 	if  event.tick % global.ts.growingInterval == 0 then
@@ -124,14 +121,14 @@ function setNextGrowTick(treeDefinition, tick)
     math.randomseed(tick)
 
     if Config.debug_mode then
-        global.logger.log("landEfficiency " .. treeDefinition.efficiency)
+        LOG.log("landEfficiency " .. treeDefinition.efficiency)
     end
 
     
     local efficiencyInfluence = 1 - (math.random(1, 100 * treeDefinition.efficiency) / 100)
 
     if Config.debug_mode then
-        global.logger.log("landEfficiency influence " .. efficiencyInfluence)
+        LOG.log("landEfficiency influence " .. efficiencyInfluence)
     end
 
     treeDefinition.growAtTick = tick + math.floor(
@@ -140,7 +137,7 @@ function setNextGrowTick(treeDefinition, tick)
     )
     
     if Config.debug_mode then
-        global.logger.log("tick " .. tick .. ": grow at tick " ..  treeDefinition.growAtTick)
+        LOG.log("tick " .. tick .. ": grow at tick " ..  treeDefinition.growAtTick)
     end
 end
 
