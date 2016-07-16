@@ -29,7 +29,7 @@ data:extend({
 		collision_box = {{-2.2, -2.2}, {2.2, 2.2}},
 		collision_mask = {"object-layer"},
 		selectable_in_game = false,
-		time_before_removed = 30, -- disappear after 0.75 seconds
+		time_before_removed = 100,
 		final_render_layer = "remnants",
 		animation = {
 			{

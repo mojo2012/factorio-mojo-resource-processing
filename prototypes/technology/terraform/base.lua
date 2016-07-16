@@ -1,3 +1,4 @@
+--[[
 data:extend({
 	{
 		type = "technology",
@@ -31,4 +32,9 @@ data:extend({
 		}
 	},
 })
+]]--
+
+addTechnologyUnlocksRecipe("landfill", "landfill-gravel")
+addTechnologyUnlocksRecipe("landfill", "landfill-dirt")
+addTechnologyUnlocksRecipe("landfill", "shovel")
 
