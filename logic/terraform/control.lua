@@ -141,7 +141,7 @@ Event.register(defines.events.on_built_entity, function(event)
 
 		if entity.valid then entity.destroy() end
 
-		player.cursor_stack.set_stack({name = entityName, count = 1})
+		--player.cursor_stack.set_stack({name = entityName, count = 1})
 		reduceDurabilityOfTool(player.cursor_stack, global.landfill.lastToolDurability)
 	end
 end)
@@ -269,7 +269,11 @@ function reduceDurabilityOfTool(item, baseDurability)
 		global.landfill.lastToolDurability = item.durability
 		--LOG.log(item.durability)
 	else
-		item.clear()
+		if item.count > 1 then
+			item.count = item.count - 1
+		else
+			item.clear()
+		end
 	end
 end
 

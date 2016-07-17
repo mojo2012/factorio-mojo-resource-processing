@@ -13,23 +13,25 @@ data:extend(
 		},
 
 		-- landfills
+		--[[
 		{
 			type = "recipe",
-			name = "landfill-stone",
+			name = "landfill",
 			enabled = "false",
 			ingredients =
 			{
-				{"stone", 10}
+				{"stone", 20}
 			},
 			result = "landfill"
 		},
+		]]--
 		{
 			type = "recipe",
 			name = "landfill-dirt",
 			enabled = "false",
 			ingredients =
 			{
-				{"dirt", 10}
+				{"dirt", 20}
 			},
 			result = "landfill"
 		},
@@ -39,7 +41,7 @@ data:extend(
 			enabled = "false",
 			ingredients =
 			{
-				{"gravel", 10}
+				{"gravel", 20}
 			},
 			result = "landfill"
 		},
