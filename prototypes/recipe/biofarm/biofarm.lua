@@ -24,10 +24,9 @@ data:extend({
 		enabled = "false",
 		energy_required = 10,
 		ingredients = {
-			{"iron-stick", 20},
-			{"copper-cable", 10},
-			{"stone", 20},
-			{"small-lamp", 10}
+			{"steel-plate", 20},
+			{"glass-plate", 10},
+			{"small-lamp", 3}
 		},
 		result = "biofarm"
 	},

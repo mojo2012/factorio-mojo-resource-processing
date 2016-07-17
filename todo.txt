@@ -1,11 +1,10 @@
 bugs:
+* prio resource inserter --> blockiert durch falsche resourcen
 
-prio resource inserter --> blockiert durch falsche resourcen
-
-fließbänder, weniger resourcen 
-
-
-hochofen aus ziegel
+ideas:
+* hochofen aus ziegel
+* better terraforming algorithm (flood fill etc)
+* 
 
 
 

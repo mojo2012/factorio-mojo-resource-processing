@@ -28,33 +28,33 @@ data:extend({
     { -- concrete
       type = "recipe",
       name = "concrete-slag",
-	  energy_required = 10,
-	  enabled = false,
-	  category = "crafting-with-fluid",
-	  ingredients = {
-		  {"slag", 5},
-		  {type="fluid", name="water", amount=10}
-		},
-	  results = {
-	  	{"concrete", 1},
-	  }
+      energy_required = 10,
+      enabled = false,
+      category = "crafting-with-fluid",
+      ingredients = {
+        {"slag", 5},
+        {type="fluid", name="water", amount=10}
+      },
+      results = {
+      	{"concrete", 1},
+      }
     },
 
     { -- stone bricks
       type = "recipe",
       name = "stone-brick-gravel",
-	  energy_required = 3.5,
-	  enabled = true,
-	  category = "smelting",
-	  ingredients = {
-		  {"gravel", 4}
-		},
-	  results = { 
-	  	{"stone-brick", 1},
-	  }
+      energy_required = 3.5,
+      enabled = true,
+      category = "smelting",
+      ingredients = {
+        {"gravel", 4}
+      },
+      results = { 
+      	{"stone-brick", 1},
+      }
     },
 
-    { -- crushed stone 
+    { -- crushed stone
       type = "recipe",
       name = "stone-crushed",
       category = "ore-crusher",
@@ -69,4 +69,21 @@ data:extend({
       	{"stone-crushed", 2}
       }
     },
+
+    { -- quartz sand from crushed stone
+      type = "recipe",
+      name = "crushed-stone-quartz-sand",
+      subgroup = "quartz",
+      energy_required = 3,
+      icon = "__mojo-resource-processing__/graphics/icons/ore-quartz/quartz-sand.png",
+      ingredients = {
+        {"stone-crushed", 1}
+      },
+      enabled = false,
+      results = {
+        {"quartz-sand", 1}
+      }
+    },
+
+
 })
