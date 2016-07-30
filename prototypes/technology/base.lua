@@ -10,6 +10,6 @@ addTechnologyUnlocksRecipe("fluid-handling", "water-well-pump")
 -- cokery
 addTechnologyUnlocksRecipe("advanced-material-processing", "cokery")
 addTechnologyUnlocksRecipe("advanced-material-processing", "charcoal")
---addTechnologyUnlocksRecipe("advanced-material-processing", "charcoal-dust")
+addTechnologyUnlocksRecipe("advanced-material-processing", "charcoal-dust")
 addTechnologyUnlocksRecipe("advanced-material-processing-2", "cokery-electric")
 

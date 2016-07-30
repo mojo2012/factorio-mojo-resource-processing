@@ -18,6 +18,7 @@ data:extend(
 			type = "recipe",
 			name = "landfill",
 			enabled = "false",
+			energy_required = 0.5,
 			ingredients =
 			{
 				{"stone", 20}
@@ -29,6 +30,7 @@ data:extend(
 			type = "recipe",
 			name = "landfill-dirt",
 			enabled = "false",
+			energy_required = 0.5,
 			ingredients =
 			{
 				{"dirt", 20}
@@ -39,6 +41,7 @@ data:extend(
 			type = "recipe",
 			name = "landfill-gravel",
 			enabled = "false",
+			energy_required = 0.5,
 			ingredients =
 			{
 				{"gravel", 20}

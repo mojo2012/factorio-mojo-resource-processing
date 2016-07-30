@@ -42,7 +42,7 @@ data:extend({
 				count = 8
 			}
 		},
-		allowed_neighbors = { "grass", "grass-dry", "grass-medium", "water", "water-green", "dirt", "dirt-dark" },
+		allowed_neighbors = { "grass", "grass-dry", "grass-medium", "dirt", "dirt-dark" },
 		map_color={r=31, g=48, b=18},
 		ageing=0.0005
 	},

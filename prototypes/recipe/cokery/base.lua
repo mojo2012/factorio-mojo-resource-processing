@@ -35,30 +35,30 @@ data:extend({
     name = "charcoal",
     icon = "__mojo-resource-processing__/graphics/icons/cokery/charcoal.png",
     enabled = "false",
-    energy_required = 3,
+    energy_required = 18,
     category = "cokery",
     subgroup = "raw-material",
     ingredients = {
       {"raw-wood", 1}
     },
     results = {
-      {"charcoal", 15},
+      {"charcoal", 10},
       {"charcoal-dust", 1},
     },
   },
-  --[[{
+  {
     type = "recipe",
     name = "charcoal-dust",
     icon = "__mojo-resource-processing__/graphics/icons/cokery/charcoal-dust.png",
     enabled = "false",
-    energy_required = 2,
+    energy_required = 15,
+    category = "cokery",
     subgroup = "raw-material",
     ingredients = {
-      {"charcoal", 1}
+      {"raw-wood", 1}
     },
     results = {
-      {"charcoal-dust", 1}
+      {"charcoal-dust", 15}
     },
   },
-  ]]--
 })

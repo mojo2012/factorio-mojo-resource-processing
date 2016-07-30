@@ -1,5 +1,6 @@
 data:extend({
 	-- add new equipment to dig holes
+ 	--[[
  	{
 		type = "mining-tool",
 		name = "shovel",
@@ -24,8 +25,26 @@ data:extend({
 		stack_size = 20,
 		place_result = "shovel",
 	},
+	]]--
+
+	{
+		type = "item",
+		name = "shovel",
+		icon = "__mojo-resource-processing__/graphics/icons/terraform/shovel.png",
+		flags = {"goes-to-main-inventory"},
+		subgroup = "terrain",
+		order = "c[shovel]-a[landfill]",
+		stack_size = 100,
+		place_as_tile =
+		{
+			result = "water",
+			condition_size = 1,
+			condition = { "water-tile" }
+		}
+  	},
 
 	-- for placing land on water
+	--[[
 	{
 		type = "item",
 		name = "landfill",
@@ -35,4 +54,5 @@ data:extend({
 		order = "ca[landfill]",
 		stack_size = 256
 	},
+	]]--
 })
