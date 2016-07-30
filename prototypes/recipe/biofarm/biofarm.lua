@@ -56,8 +56,8 @@ data:extend({
 			{"raw-wood", 1}
 		},
 		results= {
-			{type = "item", name = "seedling", amount = 5},
-			{type = "item", name = "woodpulp", amount = 5}
+			{type = "item", name = "seedling", amount = 30},
+			{type = "item", name = "woodpulp", amount = 10}
 		},
 	},
 
