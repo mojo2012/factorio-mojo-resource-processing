@@ -143,7 +143,7 @@ data:extend({
 		name = "raw-wood-unfertilized",
 		category = "biofarm",
 		enabled = "false",
-	    energy_required = 150,
+	    energy_required = 100,
 		subgroup = "raw-material",
 		icon = "__base__/graphics/icons/raw-wood.png",
 		ingredients = {
@@ -151,7 +151,7 @@ data:extend({
     		{type="fluid", name="water", amount=100},
     	},
 		results = {
-			{name = "raw-wood", amount = 50},
+			{name = "raw-wood", amount = 100},
 		},
 	},
 	{
@@ -159,7 +159,7 @@ data:extend({
 		name = "raw-wood-fertilized-1",
 		category = "biofarm",
 		enabled = "false",
-	    energy_required = 100,
+	    energy_required = 80,
 		subgroup = "raw-material",
 		icon = "__base__/graphics/icons/raw-wood.png",
 		ingredients = {
@@ -168,7 +168,7 @@ data:extend({
     		{type="fluid", name="water", amount=100},
     	},
 		results = {
-			{name = "raw-wood", amount = 50},
+			{name = "raw-wood", amount = 100},
 		},
 	},
 	{
@@ -185,7 +185,7 @@ data:extend({
     		{type="fluid", name="water", amount=100},
     	},
 		results = {
-			{name = "raw-wood", amount = 50},
+			{name = "raw-wood", amount = 100},
 		},
 	},
 	{
@@ -202,7 +202,7 @@ data:extend({
     		{type="fluid", name="water", amount=100},
     	},
 		results = {
-			{name = "raw-wood", amount = 50},
+			{name = "raw-wood", amount = 100},
 		},
 	},
 
